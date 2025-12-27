@@ -10,6 +10,13 @@ namespace App\Controller;
  */
 class UsersController extends AppController
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+        // Allow unauthenticated access to login and register
+        $this->Authentication->addUnauthenticatedActions(['login', 'register']);
+    }
+
     /**
      * Index method
      *
@@ -96,5 +103,57 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Login method
+     *
+     * @return \Cake\Http\Response|null|void
+     */
+    public function login()
+    {
+        $this->request->allowMethod(['get', 'post']);
+        $result = $this->Authentication->getResult();
+
+        if ($result && $result->isValid()) {
+            $redirect = $this->request->getQuery('redirect') ?: ['controller' => 'Pages', 'action' => 'display', 'home'];
+            return $this->redirect($redirect);
+        }
+
+        if ($this->request->is('post')) {
+            $this->Flash->error(__('Invalid email or password'));
+        }
+    }
+
+    /**
+     * Logout method
+     *
+     * @return \Cake\Http\Response|null
+     */
+    public function logout()
+    {
+        $this->request->allowMethod(['post', 'get']);
+        $this->Authentication->logout();
+        $this->Flash->success(__('You are now logged out'));
+        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+    }
+
+    /**
+     * Register method
+     *
+     * @return \Cake\Http\Response|null|void
+     */
+    public function register()
+    {
+        $user = $this->Users->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Registration successful. You can now log in.'));
+                return $this->redirect(['action' => 'login']);
+            }
+            $this->Flash->error(__('Unable to register. Please, try again.'));
+        }
+        $this->set(compact('user'));
     }
 }
