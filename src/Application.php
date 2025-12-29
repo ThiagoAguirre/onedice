@@ -121,7 +121,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
         $service = new AuthenticationService([
-            'unauthenticatedRedirect' => Router::url(['controller' => 'Users', 'action' => 'login']),
+            // Use an absolute path to avoid resolving within plugin scopes (e.g., DebugKit)
+            'unauthenticatedRedirect' => Router::url('/users/login'),
             'queryParam' => 'redirect',
         ]);
 
@@ -133,14 +134,19 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         // Session authenticator
         $service->loadAuthenticator('Authentication.Session');
 
-        // Form authenticator for login
+        // Form authenticator for login (modern config passes identifiers here)
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => Router::url(['controller' => 'Users', 'action' => 'login']),
+            // Absolute path to prevent plugin-scoped route resolution
+            'loginUrl' => Router::url('/users/login'),
+            'identifiers' => [
+                'Authentication.Password' => [
+                    'fields' => $fields,
+                ],
+            ],
         ]);
 
-        // Password identifier
-        $service->loadIdentifier('Authentication.Password', compact('fields'));
+        // No explicit loadIdentifier() to avoid deprecation; identifiers are defined above
 
         return $service;
     }

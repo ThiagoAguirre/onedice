@@ -116,7 +116,7 @@ class UsersController extends AppController
         $result = $this->Authentication->getResult();
 
         if ($result && $result->isValid()) {
-            $redirect = $this->request->getQuery('redirect') ?: ['controller' => 'Pages', 'action' => 'display', 'home'];
+            $redirect = $this->request->getQuery('redirect') ?: ['controller' => 'Homework', 'action' => 'choice'];
             return $this->redirect($redirect);
         }
 

@@ -64,12 +64,31 @@ class UsersTable extends Table
             ->scalar('password')
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            ->notEmptyString('password', __('A senha é obrigatória.'))
+            ->minLength('password', 8, __('A senha deve ter pelo menos 8 caracteres.'))
+            ->add('password', 'complexity', [
+                'rule' => function ($value, $context) {
+                    if (!is_string($value)) {
+                        return false;
+                    }
+                    $hasUpper = (bool)preg_match('/[A-Z]/', $value);
+                    $hasLower = (bool)preg_match('/[a-z]/', $value);
+                    $hasDigit = (bool)preg_match('/\d/', $value);
+                    return $hasUpper && $hasLower && $hasDigit;
+                },
+                'message' => __('A senha deve conter letra maiúscula, minúscula e número.'),
+            ]);
+
+        // Optional: confirm password must match
+        $validator->add('password_confirm', 'compareWith', [
+            'rule' => ['compareWith', 'password'],
+            'message' => __('As senhas devem coincidir.'),
+        ]);
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            ->notEmptyString('email', __('O e-mail é obrigatório.'));
 
         return $validator;
     }
