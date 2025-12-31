@@ -17,7 +17,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-use Authentication\Controller\Component\AuthenticationComponent;
+use Cake\Event\EventInterface;
+// use Authentication\Controller\Component\AuthenticationComponent;
 
 /**
  * Application Controller
@@ -51,4 +52,7 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+    // AuthenticationComponent performs identity checks automatically
+    // at Controller.startup unless actions are whitelisted in controllers.
 }

@@ -9,12 +9,8 @@ namespace App\Controller;
  */
 class HomeworkController extends AppController
 {
-    public function beforeFilter(\Cake\Event\EventInterface $event): void
-    {
-        parent::beforeFilter($event);
-        // Require authentication for all actions in this controller
-        $this->Authentication->requireAuthentication();
-    }
+    // AuthenticationComponent already requires identity by default.
+    // No custom beforeFilter is needed here.
 
     /**
      * Index method
@@ -23,8 +19,15 @@ class HomeworkController extends AppController
      */
     public function choice()
     {
-        // Static choice view; no model interaction required.
-        // If you later add a HomeworkTable, you can re-enable queries here.
+        // Logged-in user identity from Authentication plugin
+        $user = $this->Authentication->getIdentity();
+
+        // Receive optional data
+        $query = $this->request->getQueryParams();
+        $data = $this->request->getData(); // empty array for non-POST
+
+        // Expose to view
+        $this->set(compact('user', 'query', 'data'));
     }
 
 }
