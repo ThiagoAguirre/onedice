@@ -24,6 +24,9 @@ class UsersController extends AppController
      */
     public function login()
     {
+        // Render full-page custom view without Cake's default layout
+        $this->viewBuilder()->disableAutoLayout();
+
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
@@ -47,7 +50,9 @@ class UsersController extends AppController
     public function home(): void
     {
         $this->request->allowMethod(['get']);
-        // Renders templates/Users/home.php using default layout
+        // Disable CakePHP default layout so the view can render
+        // a full standalone landing page (includes its own <html>/<head>/<body>)
+        $this->viewBuilder()->disableAutoLayout();
     }
 
     /**
@@ -70,6 +75,9 @@ class UsersController extends AppController
      */
     public function register()
     {
+        // Render full-page custom view without Cake's default layout
+        $this->viewBuilder()->disableAutoLayout();
+
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
