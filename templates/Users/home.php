@@ -1,4 +1,10 @@
- <!-- Fonts -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiceRPG - Home</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -8,6 +14,8 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <?= $this->Html->css('home') ?>
+</head>
 <body class="antialiased bg-stone-50 text-stone-800 selection:bg-indigo-100 selection:text-indigo-900">
 
     <!-- Navigation -->
@@ -35,8 +43,8 @@
 
             <!-- CTA -->
             <div class="flex items-center gap-4">
-                <a href="#login" class="hidden md:block text-sm font-medium text-stone-600 hover:text-indigo-900">Log in</a>
-                <a href="#signup" class="px-5 py-2.5 bg-indigo-900 text-white text-sm font-medium rounded-lg shadow-lg shadow-indigo-900/20 hover:bg-indigo-800 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>" class="hidden md:block text-sm font-medium text-stone-600 hover:text-indigo-900">Log in</a>
+                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>" class="px-5 py-2.5 bg-indigo-900 text-white text-sm font-medium rounded-lg shadow-lg shadow-indigo-900/20 hover:bg-indigo-800 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
                     <span>Enter Platform</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
@@ -699,7 +707,6 @@
         <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-stone-900 via-indigo-900 to-stone-900 opacity-50"></div>
     </footer>
 
+    <?= $this->Html->script('home') ?>
 </body>
-
-
-<?php echo $this->Html->script('Users/home', ['block' => true]); ?>
+</html>

@@ -1,7 +1,15 @@
+<?php
+$redirect = $this->request->getQuery('redirect');
+$formUrl = ['action' => 'login'];
+if ($redirect) {
+    $formUrl['?'] = ['redirect' => $redirect];
+}
+?>
+<!DOCTYPE html>
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UISOCIAL - Login</title>
+    <title>DiceRPG - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -31,6 +39,22 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        .message.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
     </style>
 <link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style><link id="all-fonts-link-font-newsreader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&amp;display=swap"><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><link id="all-fonts-link-font-google-sans-flex" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-google-sans-flex">.font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }</style><link id="all-fonts-link-font-oswald" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-oswald">.font-oswald { font-family: 'Oswald', sans-serif !important; }</style><link id="all-fonts-link-font-dm-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-dm-sans">.font-dm-sans { font-family: 'DM Sans', sans-serif !important; }</style></head>
 <body class="min-h-screen w-full bg-white text-neutral-800 flex flex-col lg:flex-row overflow-x-hidden">
@@ -51,8 +75,8 @@
             <div class="flex justify-between items-center w-full">
                 <span class="text-base font-medium tracking-wide text-white/90">Selected Works</span>
                 <div class="flex items-center gap-8">
-                    <a href="#" class="text-sm font-medium hover:text-white/80 transition-colors">Sign Up</a>
-                    <a href="#" class="text-xs font-medium border border-white/30 hover:bg-white hover:text-neutral-900 rounded-full px-6 py-2.5 transition-all">
+                    <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'register']) ?>" class="text-sm font-medium hover:text-white/80 transition-colors">Sign Up</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'register']) ?>" class="text-xs font-medium border border-white/30 hover:bg-white hover:text-neutral-900 rounded-full px-6 py-2.5 transition-all">
                         Join Us
                     </a>
                 </div>
@@ -66,7 +90,7 @@
         <!-- Top Navigation -->
         <div class="w-full p-8 lg:px-16 lg:py-10 flex justify-between items-center">
             <div class="text-xl font-bold tracking-tighter text-neutral-900 flex items-center gap-1 brand-font uppercase">
-                UISOCIAL
+                DiceRPG
             </div>
             
             <!-- Language Selector -->
@@ -89,22 +113,25 @@
             
             <!-- Headings -->
             <div class="text-center mb-10">
-                <h1 class="text-4xl lg:text-5xl font-semibold text-neutral-900 tracking-tight mb-3">Hi Designer</h1>
-                <p class="text-neutral-500 font-normal text-base">Welcome to UISOCIAL</p>
+                <h1 class="text-4xl lg:text-5xl font-semibold text-neutral-900 tracking-tight mb-3">Welcome back</h1>
+                <p class="text-neutral-500 font-normal text-base">Sign in to DiceRPG</p>
             </div>
 
+            <?= $this->Flash->render() ?>
+
             <!-- Form -->
-            <form action="#" class="space-y-5 w-full">
+            <?= $this->Form->create(null, ['url' => $formUrl, 'class' => 'space-y-5 w-full']) ?>
+                <?= $this->Form->hidden('redirect', ['value' => $redirect]) ?>
                 
                 <!-- Email -->
                 <div class="space-y-1">
-                    <input type="email" id="email" class="block w-full rounded-xl border border-neutral-200 bg-white px-5 py-4 text-base text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:ring-0 transition-all duration-200 outline-none" placeholder="Email">
+                    <input type="email" id="email" name="email" autocomplete="email" value="<?= h($this->request->getData('email')) ?>" class="block w-full rounded-xl border border-neutral-200 bg-white px-5 py-4 text-base text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:ring-0 transition-all duration-200 outline-none" placeholder="Email" required>
                 </div>
 
                 <!-- Password -->
                 <div class="space-y-2">
                     <div class="relative">
-                        <input type="password" id="password" class="block w-full rounded-xl border border-neutral-200 bg-white px-5 py-4 text-base text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:ring-0 transition-all duration-200 outline-none" placeholder="Password">
+                        <input type="password" id="password" name="password" autocomplete="current-password" class="block w-full rounded-xl border border-neutral-200 bg-white px-5 py-4 text-base text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:ring-0 transition-all duration-200 outline-none" placeholder="Password" required>
                     </div>
                     <div class="flex justify-end">
                         <a href="#" class="text-xs font-medium text-[#ea4c46] hover:text-[#d63f39] transition-colors">
@@ -138,10 +165,10 @@
                 <!-- Sign Up Link -->
                 <p class="text-center text-xs text-neutral-500 mt-8">
                     Don't have an account? 
-                    <a href="#" class="font-medium text-[#ea4c46] hover:text-[#d63f39] transition-colors">Sign up</a>
+                    <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'register']) ?>" class="font-medium text-[#ea4c46] hover:text-[#d63f39] transition-colors">Sign up</a>
                 </p>
 
-            </form>
+            <?= $this->Form->end() ?>
 
             <!-- Footer Socials -->
             <div class="mt-16 flex justify-center gap-8 opacity-70">
