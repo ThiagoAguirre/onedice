@@ -64,31 +64,39 @@ class UsersTable extends Table
             ->scalar('password')
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
-            ->notEmptyString('password', __('A senha é obrigatória.'))
-            ->minLength('password', 8, __('A senha deve ter pelo menos 8 caracteres.'))
-            ->add('password', 'complexity', [
+            ->notEmptyString('password', __('Password is required.'))
+            ->minLength('password', 8, __('Password must be at least 8 characters long.'))
+            ->add('password', 'hasUppercase', [
                 'rule' => function ($value, $context) {
-                    if (!is_string($value)) {
-                        return false;
-                    }
-                    $hasUpper = (bool)preg_match('/[A-Z]/', $value);
-                    $hasLower = (bool)preg_match('/[a-z]/', $value);
-                    $hasDigit = (bool)preg_match('/\d/', $value);
-                    return $hasUpper && $hasLower && $hasDigit;
+                    return is_string($value) && (bool)preg_match('/[A-Z]/', $value);
                 },
-                'message' => __('A senha deve conter letra maiúscula, minúscula e número.'),
+                'message' => __('Password must contain at least one uppercase letter.'),
+            ])
+            ->add('password', 'hasNumber', [
+                'rule' => function ($value, $context) {
+                    return is_string($value) && (bool)preg_match('/[0-9]/', $value);
+                },
+                'message' => __('Password must contain at least one number.'),
+            ])
+            ->add('password', 'hasSymbol', [
+                'rule' => function ($value, $context) {
+                    return is_string($value) && (bool)preg_match('/[^A-Za-z0-9]/', $value);
+                },
+                'message' => __('Password must contain at least one symbol.'),
             ]);
 
-        // Optional: confirm password must match
-        $validator->add('password_confirm', 'compareWith', [
-            'rule' => ['compareWith', 'password'],
-            'message' => __('As senhas devem coincidir.'),
-        ]);
+        $validator
+            ->requirePresence('password_confirm', 'create')
+            ->notEmptyString('password_confirm', __('Please confirm your password.'))
+            ->add('password_confirm', 'compareWith', [
+                'rule' => ['compareWith', 'password'],
+                'message' => __('Passwords must match.'),
+            ]);
 
         $validator
-            ->email('email')
+            ->email('email', false, __('Please provide a valid email address.'))
             ->requirePresence('email', 'create')
-            ->notEmptyString('email', __('O e-mail é obrigatório.'));
+            ->notEmptyString('email', __('Email is required.'));
 
         return $validator;
     }

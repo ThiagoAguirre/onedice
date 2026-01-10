@@ -24,9 +24,6 @@ class UsersController extends AppController
      */
     public function login()
     {
-        // Render full-page custom view without Cake's default layout
-        $this->viewBuilder()->disableAutoLayout();
-
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
@@ -76,9 +73,6 @@ class UsersController extends AppController
      */
     public function register()
     {
-        // Render full-page custom view without Cake's default layout
-        $this->viewBuilder()->disableAutoLayout();
-
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
