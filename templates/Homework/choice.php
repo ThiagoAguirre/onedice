@@ -13,7 +13,7 @@
       <!-- Panels -->
       <div class="panels">
         <!-- PLAYER -->
-        <div id="panel-player" class="role-panel role-panel-player glow-border-player">
+        <div id="panel-player" class="role-panel role-panel-player glow-border-player" data-role="PLAYER" data-url="<?= $this->Url->build(['controller' => 'Player', 'action' => 'index']); ?>">
           <div class="corner tl player"></div>
           <div class="corner bl player"></div>
 
@@ -56,7 +56,7 @@
         </div>
 
         <!-- MESTRE -->
-        <div id="panel-mestre" class="role-panel role-panel-mestre glow-border-mestre">
+        <div id="panel-mestre" class="role-panel role-panel-mestre glow-border-mestre" data-role="MESTRE" data-url="<?= $this->Url->build(['controller' => 'Master', 'action' => 'index']); ?>">
           <div class="corner tr mestre"></div>
           <div class="corner br mestre"></div>
 
@@ -105,5 +105,6 @@
         <p class="text-muted-foreground-60" id="instruction">Escolha seu caminho</p>
       </div>
     </div>
+    <?php echo $this->Html->script('choice-popup', ['block' => true, 'type' => 'module']); ?>
     <?php echo $this->Html->script('choice', ['block' => true, 'type' => 'module']); ?>
     <?php echo $this->Html->css('choice', ['block' => true]); ?>

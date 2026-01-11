@@ -1,12 +1,14 @@
 // Three.js D20 Icosahedron in vanilla JS
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-const diceLayer = document.getElementById('dice-layer');
+let diceLayer;
 
 let renderer, scene, camera, diceGroup, clock;
 let shellMaterial, innerMaterial, edges;
 
 function initThree() {
+  diceLayer = document.getElementById('dice-layer');
+  if (!diceLayer) return;
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(45, diceLayer.clientWidth / diceLayer.clientHeight, 0.1, 100);
   camera.position.set(0, 0, 6);
@@ -80,6 +82,7 @@ function animate() {
 }
 
 function onResize() {
+  if (!diceLayer || !camera || !renderer) return;
   const w = diceLayer.clientWidth;
   const h = diceLayer.clientHeight;
   camera.aspect = w / h;
@@ -152,11 +155,11 @@ function typeWriterInstruction() {
   setTimeout(tick, 500);
 }
 
-window.addEventListener('resize', onResize);
-
-// Boot
-initThree();
-randomizeParticles();
-wireClicks();
-wireTilt();
-typeWriterInstruction();
+document.addEventListener('DOMContentLoaded', () => {
+  initThree();
+  randomizeParticles();
+  wireClicks();
+  wireTilt();
+  typeWriterInstruction();
+  window.addEventListener('resize', onResize);
+});
