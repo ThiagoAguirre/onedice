@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="<?= h($this->request->getParam('lang') ?? 'en') ?>" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,8 +48,8 @@
                         </svg>
                     </span>
                 </button>
-                <a class="btn btn--ghost" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Log in</a>
-                <a class="btn btn--primary" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Enter platform</a>
+                <a class="btn btn--ghost" href="<?= $this->Language->url(['controller' => 'Users', 'action' => 'login']) ?>"><?= __('Log in') ?></a>
+                <a class="btn btn--primary" href="<?= $this->Language->url(['controller' => 'Users', 'action' => 'login']) ?>"><?= __('Enter platform') ?></a>
             </div>
         </div>
     </header>
@@ -59,11 +59,11 @@
             <div class="container hero__grid">
                 <div class="hero__content reveal" style="--delay: 0s;">
                     <p class="eyebrow">Daylight realm and modern fantasy tools</p>
-                    <h1 class="hero__title">Bright worlds for brave storytellers.</h1>
+                    <h1 class="hero__title"><?= __('Welcome to OneDice RPG') ?></h1>
                     <p class="hero__subtitle">DiceRPG is a friendly, premium tabletop hub with character sheets, maps, and rituals that feel light to use and powerful to master.</p>
                     <div class="hero__actions">
-                        <a class="btn btn--primary" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Start your adventure</a>
-                        <a class="btn btn--outline" href="#features">Explore features</a>
+                        <a class="btn btn--primary" href="<?= $this->Language->url(['controller' => 'Users', 'action' => 'login']) ?>"><?= __('Start your adventure') ?></a>
+                        <a class="btn btn--outline" href="#features"><?= __('Explore features') ?></a>
                     </div>
                     <div class="hero__stats">
                         <div class="stat">
@@ -234,7 +234,7 @@
                             Instant loot drops and rewards
                         </li>
                     </ul>
-                    <a class="btn btn--primary" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Start as a game master</a>
+                    <a class="btn btn--primary" href="<?= $this->Language->url(['controller' => 'Users', 'action' => 'login']) ?>">Start as a game master</a>
                 </div>
                 <div class="split__visual reveal" style="--delay: 0.12s;">
                     <div class="panel rune-border">
@@ -309,7 +309,7 @@
                         <p class="section__subtitle">Light, friendly, and built for long campaigns with zero clutter.</p>
                     </div>
                     <div class="cta__actions">
-                        <a class="btn btn--primary" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Enter the realm</a>
+                        <a class="btn btn--primary" href="<?= $this->Language->url(['controller' => 'Users', 'action' => 'login']) ?>">Enter the realm</a>
                         <a class="btn btn--outline" href="#features">View the toolkit</a>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App;
 
+use App\Middleware\LanguageMiddleware;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
@@ -68,6 +69,10 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
+        $defaultLocale = (string)Configure::read('I18n.defaultLocale', 'en');
+        $supportedLocales = Configure::read('I18n.languages', [$defaultLocale]);
+        $supportedLocales = is_array($supportedLocales) ? $supportedLocales : [$defaultLocale];
+
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
@@ -83,6 +88,11 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             // caching in production could improve performance.
             // See https://github.com/CakeDC/cakephp-cached-routing
             ->add(new RoutingMiddleware($this))
+            // Set locale based on `lang` URL parameter after routing
+            ->add(new LanguageMiddleware([
+                'default' => $defaultLocale,
+                'supported' => $supportedLocales,
+            ]))
 
             // Authentication Middleware
             ->add(new AuthenticationMiddleware($this))
@@ -120,9 +130,12 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      */
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
+        $defaultLocale = (string)Configure::read('I18n.defaultLocale', 'en');
+        $lang = $request->getParam('lang') ?? $defaultLocale;
+        // Use absolute path to avoid plugin-scoped route resolution (e.g., DebugKit)
+        $loginUrl = Router::url('/' . $lang . '/users/login');
         $service = new AuthenticationService([
-            // Use an absolute path to avoid resolving within plugin scopes (e.g., DebugKit)
-            'unauthenticatedRedirect' => Router::url('/users/login'),
+            'unauthenticatedRedirect' => $loginUrl,
             'queryParam' => 'redirect',
         ]);
 
@@ -137,8 +150,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         // Form authenticator for login (modern config passes identifiers here)
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            // Absolute path to prevent plugin-scoped route resolution
-            'loginUrl' => Router::url('/users/login'),
+            'loginUrl' => $loginUrl,
             'identifiers' => [
                 'Authentication.Password' => [
                     'fields' => $fields,

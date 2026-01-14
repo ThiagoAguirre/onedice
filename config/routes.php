@@ -21,6 +21,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use Cake\Core\Configure;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
@@ -49,33 +50,27 @@ return function (RouteBuilder $routes): void {
      */
     $routes->setRouteClass(DashedRoute::class);
 
-    $routes->scope('/', function (RouteBuilder $builder): void {
-        /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
-         * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
-         */
-        $builder->connect('/', 'Users::home');
+    $defaultLanguage = (string)Configure::read('I18n.defaultLocale', 'en');
+    $persist = ['persist' => ['lang']];
 
-        /*
-         * ...and connect the rest of 'Pages' controller's URLs.
-         */
-        $builder->connect('/pages/*', 'Pages::display');
+    // Redirect base URL to default language.
+    $routes->scope('/', function (RouteBuilder $builder) use ($defaultLanguage): void {
+        $builder->redirect('/', '/' . $defaultLanguage, ['status' => 302]);
+    });
 
-        /*
-         * Connect catchall routes for all controllers.
-         *
-         * The `fallbacks` method is a shortcut for
-         *
-         * ```
-         * $builder->connect('/{controller}', ['action' => 'index']);
-         * $builder->connect('/{controller}/{action}/*', []);
-         * ```
-         *
-         * It is NOT recommended to use fallback routes after your initial prototyping phase!
-         * See https://book.cakephp.org/5/en/development/routing.html#fallbacks-method for more information
-         */
-        $builder->fallbacks();
+    // Language-prefixed scope: /{lang}/...
+    $routes->scope('/{lang}', function (RouteBuilder $builder) use ($persist): void {
+        // Root within language scope (with and without trailing slash)
+        $builder->connect('', 'Users::home', $persist);
+        $builder->connect('/', 'Users::home', $persist);
+        $builder->connect('/pages/*', 'Pages::display', $persist);
+
+        // Users login within language scope
+        $builder->connect('/users/login', ['controller' => 'Users', 'action' => 'login'], $persist);
+
+        // Catchall routes for all controllers (preserving lang)
+        $builder->connect('/{controller}', ['action' => 'index'], $persist);
+        $builder->connect('/{controller}/{action}/*', [], $persist);
     });
 
     /*

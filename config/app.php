@@ -50,7 +50,7 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en'),
         'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
         'base' => false,
         'dir' => 'src',
@@ -66,6 +66,14 @@ return [
             'templates' => [ROOT . DS . 'templates' . DS],
             'locales' => [RESOURCES . 'locales' . DS],
         ],
+    ],
+
+    /*
+     * Supported UI languages for route-prefixed i18n.
+     */
+    'I18n' => [
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en'),
+        'languages' => ['en', 'pt', 'es'],
     ],
 
     /*

@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: OneDice\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Welcome to OneDice RPG"
+msgstr "Bem-vindo ao OneDice RPG"
+
+msgid "Log in"
+msgstr "Entrar"
+
+msgid "Enter platform"
+msgstr "Entrar na plataforma"
+
+msgid "Start your adventure"
+msgstr "Comece sua aventura"
+
+msgid "Explore features"
+msgstr "Explorar recursos"
