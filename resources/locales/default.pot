@@ -1,0 +1,317 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2026-01-13 03:27+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ./src/Controller/UsersController.php:37
+msgid "Invalid email or password"
+msgstr ""
+
+#: ./src/Controller/UsersController.php:65
+msgid "You are now logged out"
+msgstr ""
+
+#: ./src/Controller/UsersController.php:80
+msgid "Registration successful. You can now log in."
+msgstr ""
+
+#: ./src/Controller/UsersController.php:83
+msgid "Unable to register. Please, try again."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:67
+msgid "Password is required."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:68
+msgid "Password must be at least 8 characters long."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:73
+msgid "Password must contain at least one uppercase letter."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:79
+msgid "Password must contain at least one number."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:85
+msgid "Password must contain at least one symbol."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:90
+msgid "Please confirm your password."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:93
+msgid "Passwords must match."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:97
+msgid "Please provide a valid email address."
+msgstr ""
+
+#: ./src/Model/Table/UsersTable.php:99
+msgid "Email is required."
+msgstr ""
+
+#: ./templates/Users/login.php:11
+msgid "Login"
+msgstr ""
+
+#: ./templates/Users/login.php:22
+msgid "Modern RPG companion"
+msgstr ""
+
+#: ./templates/Users/login.php:27
+msgid "Bem-vindo de volta"
+msgstr ""
+
+#: ./templates/Users/login.php:28
+msgid "Entre para continuar sua jornada."
+msgstr ""
+
+#: ./templates/Users/login.php:50
+#: ./templates/Users/register.php:69
+msgid "Email"
+msgstr ""
+
+#: ./templates/Users/login.php:66
+#: ./templates/Users/register.php:85
+msgid "Senha"
+msgstr ""
+
+#: ./templates/Users/login.php:72
+#: ./templates/Users/register.php:91
+#: ./templates/Users/register.php:150
+msgid "Mostrar senha"
+msgstr ""
+
+#: ./templates/Users/login.php:85
+msgid "Esqueceu a senha?"
+msgstr ""
+
+#: ./templates/Users/login.php:89
+#: ./templates/Users/register.php:28
+msgid "Entrar"
+msgstr ""
+
+#: ./templates/Users/login.php:93
+msgid "Nao tem conta?"
+msgstr ""
+
+#: ./templates/Users/login.php:95
+#: ./templates/Users/register.php:6
+#: ./templates/Users/register.php:169
+msgid "Criar conta"
+msgstr ""
+
+#: ./templates/Users/login.php:103
+msgid "Portal de acesso"
+msgstr ""
+
+#: ./templates/Users/login.php:104
+msgid "Sua guilda esta pronta"
+msgstr ""
+
+#: ./templates/Users/login.php:105
+msgid "Gerencie campanhas, fichas e rolagens com estilo moderno."
+msgstr ""
+
+#: ./templates/Users/login.php:107
+msgid "Painel de campanhas sempre sincronizado"
+msgstr ""
+
+#: ./templates/Users/login.php:108
+msgid "Notas e mapas em um unico lugar"
+msgstr ""
+
+#: ./templates/Users/login.php:109
+msgid "Interface leve com brilho sutil"
+msgstr ""
+
+#: ./templates/Users/login.php:111
+msgid "Login illustration"
+msgstr ""
+
+#: ./templates/Users/register.php:19
+msgid "Crie seu perfil de campanha"
+msgstr ""
+
+#: ./templates/Users/register.php:24
+msgid "Inicie sua aventura"
+msgstr ""
+
+#: ./templates/Users/register.php:25
+msgid "Configure seu perfil em poucos passos."
+msgstr ""
+
+#: ./templates/Users/register.php:27
+msgid "Ja possui conta?"
+msgstr ""
+
+#: ./templates/Users/register.php:37
+msgid "Finalize os requisitos de senha antes de continuar."
+msgstr ""
+
+#: ./templates/Users/register.php:53
+msgid "Usuario"
+msgstr ""
+
+#: ./templates/Users/register.php:108
+#: ./templates/Users/register.php:120
+msgid "Fraca"
+msgstr ""
+
+#: ./templates/Users/register.php:109
+msgid "Media"
+msgstr ""
+
+#: ./templates/Users/register.php:110
+msgid "Forte"
+msgstr ""
+
+#: ./templates/Users/register.php:111
+#: ./templates/Users/register.php:123
+msgid "Use uma senha forte para proteger sua conta."
+msgstr ""
+
+#: ./templates/Users/register.php:112
+msgid "Senha muito curta. Use ao menos 5 caracteres."
+msgstr ""
+
+#: ./templates/Users/register.php:113
+msgid "Sua senha precisa cumprir todos os requisitos abaixo."
+msgstr ""
+
+#: ./templates/Users/register.php:114
+msgid "Senha forte pronta para uso."
+msgstr ""
+
+#: ./templates/Users/register.php:120
+msgid "Forca"
+msgstr ""
+
+#: ./templates/Users/register.php:125
+msgid "Minimo de 8 caracteres"
+msgstr ""
+
+#: ./templates/Users/register.php:126
+msgid "Pelo menos 1 letra maiuscula"
+msgstr ""
+
+#: ./templates/Users/register.php:127
+msgid "Pelo menos 1 numero"
+msgstr ""
+
+#: ./templates/Users/register.php:128
+msgid "Pelo menos 1 simbolo"
+msgstr ""
+
+#: ./templates/Users/register.php:144
+msgid "Confirmar senha"
+msgstr ""
+
+#: ./templates/Users/register.php:163
+msgid "As senhas nao coincidem."
+msgstr ""
+
+#: ./templates/Users/register.php:173
+msgid "Ao criar uma conta voce concorda com os termos."
+msgstr ""
+
+#: ./templates/Users/register.php:180
+msgid "Novo chamado"
+msgstr ""
+
+#: ./templates/Users/register.php:181
+msgid "Monte sua mesa moderna"
+msgstr ""
+
+#: ./templates/Users/register.php:182
+msgid "Crie sua identidade e organize campanhas com visual clean."
+msgstr ""
+
+#: ./templates/Users/register.php:184
+msgid "Convide sua party em segundos"
+msgstr ""
+
+#: ./templates/Users/register.php:185
+msgid "Armazene fichas com seguranca"
+msgstr ""
+
+#: ./templates/Users/register.php:186
+msgid "Interface atual com detalhes RPG"
+msgstr ""
+
+#: ./templates/Users/register.php:188
+msgid "Register illustration"
+msgstr ""
+
+#: ./templates/element/auth_side_panel.php:13
+msgid "Your quest continues"
+msgstr ""
+
+#: ./templates/element/auth_side_panel.php:14
+msgid "Keep your party, rolls, and notes in sync."
+msgstr ""
+
+#: ./templates/element/auth_side_panel.php:15
+msgid "Quest log"
+msgstr ""
+
+#: ./templates/element/auth_side_panel.php:17
+msgid "Track party progress in one place"
+msgstr ""
+
+#: ./templates/element/auth_side_panel.php:18
+msgid "Save character sheets and artifacts"
+msgstr ""
+
+#: ./templates/element/auth_side_panel.php:19
+msgid "Stay ready for the next roll"
+msgstr ""
+
+#: ./templates/element/auth_side_panel.php:21
+msgid "Adventure illustration"
+msgstr ""
+
+#: ./templates/element/lang_switcher.php:12
+msgid "PT"
+msgstr ""
+
+#: ./templates/element/lang_switcher.php:12
+msgid "Portuguese"
+msgstr ""
+
+#: ./templates/element/lang_switcher.php:13
+msgid "EN"
+msgstr ""
+
+#: ./templates/element/lang_switcher.php:13
+msgid "English"
+msgstr ""
+
+#: ./templates/element/lang_switcher.php:14
+msgid "ES"
+msgstr ""
+
+#: ./templates/element/lang_switcher.php:14
+msgid "Espanol"
+msgstr ""
+
+#: ./templates/layout/error.php:36
+msgid "Back"
+msgstr ""
+
