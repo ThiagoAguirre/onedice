@@ -20,3 +20,132 @@ msgstr "Inicia tu aventura"
 
 msgid "Explore features"
 msgstr "Explorar funciones"
+
+msgid "Modern RPG companion"
+msgstr "Companero moderno de RPG"
+
+msgid "Welcome back"
+msgstr "Bienvenido de nuevo"
+
+msgid "Log in to continue your journey."
+msgstr "Inicia sesion para continuar tu viaje."
+
+msgid "Email"
+msgstr "Correo"
+
+msgid "Password"
+msgstr "Contrasena"
+
+msgid "Show password"
+msgstr "Mostrar contrasena"
+
+msgid "Forgot your password?"
+msgstr "Olvidaste tu contrasena?"
+
+msgid "Don't have an account?"
+msgstr "No tienes una cuenta?"
+
+msgid "Create account"
+msgstr "Crear cuenta"
+
+msgid "Access portal"
+msgstr "Portal de acceso"
+
+msgid "Your guild is ready"
+msgstr "Tu gremio esta listo"
+
+msgid "Manage campaigns, sheets, and rolls with a modern style."
+msgstr "Gestiona campanas, fichas y tiradas con un estilo moderno."
+
+msgid "Campaign dashboard always in sync"
+msgstr "Panel de campanas siempre sincronizado"
+
+msgid "Notes and maps in one place"
+msgstr "Notas y mapas en un solo lugar"
+
+msgid "Light interface with subtle glow"
+msgstr "Interfaz ligera con brillo sutil"
+
+msgid "Login illustration"
+msgstr "Ilustracion de inicio de sesion"
+
+msgid "Create your campaign profile"
+msgstr "Crea tu perfil de campana"
+
+msgid "Set up your profile in a few steps."
+msgstr "Configura tu perfil en pocos pasos."
+
+msgid "Already have an account?"
+msgstr "Ya tienes una cuenta?"
+
+msgid "Complete the password requirements before continuing."
+msgstr "Completa los requisitos de contrasena antes de continuar."
+
+msgid "Username"
+msgstr "Usuario"
+
+msgid "Weak"
+msgstr "Debil"
+
+msgid "Medium"
+msgstr "Media"
+
+msgid "Strong"
+msgstr "Fuerte"
+
+msgid "Use a strong password to protect your account."
+msgstr "Usa una contrasena fuerte para proteger tu cuenta."
+
+msgid "Password too short. Use at least 5 characters."
+msgstr "Contrasena demasiado corta. Usa al menos 5 caracteres."
+
+msgid "Your password must meet all requirements below."
+msgstr "Tu contrasena debe cumplir todos los requisitos abajo."
+
+msgid "Strong password ready to use."
+msgstr "Contrasena fuerte lista para usar."
+
+msgid "Strength"
+msgstr "Fuerza"
+
+msgid "Minimum of 8 characters"
+msgstr "Minimo de 8 caracteres"
+
+msgid "At least 1 uppercase letter"
+msgstr "Al menos 1 letra mayuscula"
+
+msgid "At least 1 number"
+msgstr "Al menos 1 numero"
+
+msgid "At least 1 symbol"
+msgstr "Al menos 1 simbolo"
+
+msgid "Confirm password"
+msgstr "Confirmar contrasena"
+
+msgid "Passwords do not match."
+msgstr "Las contrasenas no coinciden."
+
+msgid "By creating an account you agree to the terms."
+msgstr "Al crear una cuenta aceptas los terminos."
+
+msgid "New calling"
+msgstr "Nuevo llamado"
+
+msgid "Build your modern table"
+msgstr "Construye tu mesa moderna"
+
+msgid "Create your identity and organize campaigns with a clean look."
+msgstr "Crea tu identidad y organiza campanas con un diseno limpio."
+
+msgid "Invite your party in seconds"
+msgstr "Invita a tu grupo en segundos"
+
+msgid "Store sheets securely"
+msgstr "Guarda fichas de forma segura"
+
+msgid "Modern interface with RPG details"
+msgstr "Interfaz moderna con detalles RPG"
+
+msgid "Register illustration"
+msgstr "Ilustracion de registro"

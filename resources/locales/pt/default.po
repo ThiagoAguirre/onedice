@@ -20,3 +20,132 @@ msgstr "Comece sua aventura"
 
 msgid "Explore features"
 msgstr "Explorar recursos"
+
+msgid "Modern RPG companion"
+msgstr "Companheiro moderno de RPG"
+
+msgid "Welcome back"
+msgstr "Bem-vindo de volta"
+
+msgid "Log in to continue your journey."
+msgstr "Entre para continuar sua jornada."
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Password"
+msgstr "Senha"
+
+msgid "Show password"
+msgstr "Mostrar senha"
+
+msgid "Forgot your password?"
+msgstr "Esqueceu a senha?"
+
+msgid "Don't have an account?"
+msgstr "Nao tem conta?"
+
+msgid "Create account"
+msgstr "Criar conta"
+
+msgid "Access portal"
+msgstr "Portal de acesso"
+
+msgid "Your guild is ready"
+msgstr "Sua guilda esta pronta"
+
+msgid "Manage campaigns, sheets, and rolls with a modern style."
+msgstr "Gerencie campanhas, fichas e rolagens com estilo moderno."
+
+msgid "Campaign dashboard always in sync"
+msgstr "Painel de campanhas sempre sincronizado"
+
+msgid "Notes and maps in one place"
+msgstr "Notas e mapas em um unico lugar"
+
+msgid "Light interface with subtle glow"
+msgstr "Interface leve com brilho sutil"
+
+msgid "Login illustration"
+msgstr "Ilustracao de login"
+
+msgid "Create your campaign profile"
+msgstr "Crie seu perfil de campanha"
+
+msgid "Set up your profile in a few steps."
+msgstr "Configure seu perfil em poucos passos."
+
+msgid "Already have an account?"
+msgstr "Ja possui conta?"
+
+msgid "Complete the password requirements before continuing."
+msgstr "Finalize os requisitos de senha antes de continuar."
+
+msgid "Username"
+msgstr "Usuario"
+
+msgid "Weak"
+msgstr "Fraca"
+
+msgid "Medium"
+msgstr "Media"
+
+msgid "Strong"
+msgstr "Forte"
+
+msgid "Use a strong password to protect your account."
+msgstr "Use uma senha forte para proteger sua conta."
+
+msgid "Password too short. Use at least 5 characters."
+msgstr "Senha muito curta. Use ao menos 5 caracteres."
+
+msgid "Your password must meet all requirements below."
+msgstr "Sua senha precisa cumprir todos os requisitos abaixo."
+
+msgid "Strong password ready to use."
+msgstr "Senha forte pronta para uso."
+
+msgid "Strength"
+msgstr "Forca"
+
+msgid "Minimum of 8 characters"
+msgstr "Minimo de 8 caracteres"
+
+msgid "At least 1 uppercase letter"
+msgstr "Pelo menos 1 letra maiuscula"
+
+msgid "At least 1 number"
+msgstr "Pelo menos 1 numero"
+
+msgid "At least 1 symbol"
+msgstr "Pelo menos 1 simbolo"
+
+msgid "Confirm password"
+msgstr "Confirmar senha"
+
+msgid "Passwords do not match."
+msgstr "As senhas nao coincidem."
+
+msgid "By creating an account you agree to the terms."
+msgstr "Ao criar uma conta voce concorda com os termos."
+
+msgid "New calling"
+msgstr "Novo chamado"
+
+msgid "Build your modern table"
+msgstr "Monte sua mesa moderna"
+
+msgid "Create your identity and organize campaigns with a clean look."
+msgstr "Crie sua identidade e organize campanhas com visual clean."
+
+msgid "Invite your party in seconds"
+msgstr "Convide sua party em segundos"
+
+msgid "Store sheets securely"
+msgstr "Armazene fichas com seguranca"
+
+msgid "Modern interface with RPG details"
+msgstr "Interface atual com detalhes RPG"
+
+msgid "Register illustration"
+msgstr "Ilustracao de cadastro"

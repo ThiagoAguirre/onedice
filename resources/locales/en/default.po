@@ -20,3 +20,132 @@ msgstr "Start your adventure"
 
 msgid "Explore features"
 msgstr "Explore features"
+
+msgid "Modern RPG companion"
+msgstr "Modern RPG companion"
+
+msgid "Welcome back"
+msgstr "Welcome back"
+
+msgid "Log in to continue your journey."
+msgstr "Log in to continue your journey."
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Show password"
+msgstr "Show password"
+
+msgid "Forgot your password?"
+msgstr "Forgot your password?"
+
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+msgid "Create account"
+msgstr "Create account"
+
+msgid "Access portal"
+msgstr "Access portal"
+
+msgid "Your guild is ready"
+msgstr "Your guild is ready"
+
+msgid "Manage campaigns, sheets, and rolls with a modern style."
+msgstr "Manage campaigns, sheets, and rolls with a modern style."
+
+msgid "Campaign dashboard always in sync"
+msgstr "Campaign dashboard always in sync"
+
+msgid "Notes and maps in one place"
+msgstr "Notes and maps in one place"
+
+msgid "Light interface with subtle glow"
+msgstr "Light interface with subtle glow"
+
+msgid "Login illustration"
+msgstr "Login illustration"
+
+msgid "Create your campaign profile"
+msgstr "Create your campaign profile"
+
+msgid "Set up your profile in a few steps."
+msgstr "Set up your profile in a few steps."
+
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+msgid "Complete the password requirements before continuing."
+msgstr "Complete the password requirements before continuing."
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Weak"
+msgstr "Weak"
+
+msgid "Medium"
+msgstr "Medium"
+
+msgid "Strong"
+msgstr "Strong"
+
+msgid "Use a strong password to protect your account."
+msgstr "Use a strong password to protect your account."
+
+msgid "Password too short. Use at least 5 characters."
+msgstr "Password too short. Use at least 5 characters."
+
+msgid "Your password must meet all requirements below."
+msgstr "Your password must meet all requirements below."
+
+msgid "Strong password ready to use."
+msgstr "Strong password ready to use."
+
+msgid "Strength"
+msgstr "Strength"
+
+msgid "Minimum of 8 characters"
+msgstr "Minimum of 8 characters"
+
+msgid "At least 1 uppercase letter"
+msgstr "At least 1 uppercase letter"
+
+msgid "At least 1 number"
+msgstr "At least 1 number"
+
+msgid "At least 1 symbol"
+msgstr "At least 1 symbol"
+
+msgid "Confirm password"
+msgstr "Confirm password"
+
+msgid "Passwords do not match."
+msgstr "Passwords do not match."
+
+msgid "By creating an account you agree to the terms."
+msgstr "By creating an account you agree to the terms."
+
+msgid "New calling"
+msgstr "New calling"
+
+msgid "Build your modern table"
+msgstr "Build your modern table"
+
+msgid "Create your identity and organize campaigns with a clean look."
+msgstr "Create your identity and organize campaigns with a clean look."
+
+msgid "Invite your party in seconds"
+msgstr "Invite your party in seconds"
+
+msgid "Store sheets securely"
+msgstr "Store sheets securely"
+
+msgid "Modern interface with RPG details"
+msgstr "Modern interface with RPG details"
+
+msgid "Register illustration"
+msgstr "Register illustration"

@@ -3,12 +3,13 @@
  * @var \App\View\AppView $this
  */
 $redirect = $this->request->getQuery('redirect');
-$formUrl = ['action' => 'login'];
+$currentLang = $this->request->getParam('lang') ?? 'en';
+$formUrl = ['action' => 'login', 'lang' => $currentLang];
 if ($redirect) {
     $formUrl['?'] = ['redirect' => $redirect];
 }
 $this->setLayout('auth');
-$this->assign('title', __('Login'));
+$this->assign('title', __('Log in'));
 
 $emailError = $this->Form->isFieldError('email');
 $passwordError = $this->Form->isFieldError('password');
@@ -24,8 +25,8 @@ $passwordError = $this->Form->isFieldError('password');
         </div>
 
         <header class="auth-card__header">
-            <h1><?= __('Bem-vindo de volta') ?></h1>
-            <p><?= __('Entre para continuar sua jornada.') ?></p>
+            <h1><?= __('Welcome back') ?></h1>
+            <p><?= __('Log in to continue your journey.') ?></p>
         </header>
 
         <?= $this->Flash->render() ?>
@@ -63,13 +64,13 @@ $passwordError = $this->Form->isFieldError('password');
                     data-password-input
                     aria-invalid="<?= $passwordError ? 'true' : 'false' ?>"
                 >
-                <label class="field__label" for="login-password"><?= __('Senha') ?></label>
+                <label class="field__label" for="login-password"><?= __('Password') ?></label>
                 <button
                     class="field__action"
                     type="button"
                     data-toggle-password
                     data-target="#login-password"
-                    aria-label="<?= __('Mostrar senha') ?>"
+                    aria-label="<?= __('Show password') ?>"
                     aria-pressed="false"
                 >
                     <svg class="field__eye" viewBox="0 0 24 24" aria-hidden="true">
@@ -82,17 +83,17 @@ $passwordError = $this->Form->isFieldError('password');
             </div>
 
             <div class="auth-form__row">
-                <a class="auth-link" href="#"><?= __('Esqueceu a senha?') ?></a>
+                <a class="auth-link" href="#"><?= __('Forgot your password?') ?></a>
             </div>
 
             <button class="btn btn-primary" type="submit">
-                <?= __('Entrar') ?>
+                <?= __('Log in') ?>
             </button>
 
             <p class="auth-form__footer">
-                <?= __('Nao tem conta?') ?>
-                <a class="auth-link" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'register']) ?>">
-                    <?= __('Criar conta') ?>
+                <?= __('Don\'t have an account?') ?>
+                <a class="auth-link" href="<?= $this->Language->url(['controller' => 'Users', 'action' => 'register']) ?>">
+                    <?= __('Create account') ?>
                 </a>
             </p>
         <?= $this->Form->end() ?>
@@ -100,13 +101,13 @@ $passwordError = $this->Form->isFieldError('password');
 
     <?= $this->element('auth_side_panel', [
         'image' => 'login.png',
-        'tag' => __('Portal de acesso'),
-        'title' => __('Sua guilda esta pronta'),
-        'subtitle' => __('Gerencie campanhas, fichas e rolagens com estilo moderno.'),
+        'tag' => __('Access portal'),
+        'title' => __('Your guild is ready'),
+        'subtitle' => __('Manage campaigns, sheets, and rolls with a modern style.'),
         'items' => [
-            __('Painel de campanhas sempre sincronizado'),
-            __('Notas e mapas em um unico lugar'),
-            __('Interface leve com brilho sutil'),
+            __('Campaign dashboard always in sync'),
+            __('Notes and maps in one place'),
+            __('Light interface with subtle glow'),
         ],
         'alt' => __('Login illustration'),
     ]) ?>
