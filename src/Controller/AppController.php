@@ -55,4 +55,30 @@ class AppController extends Controller
 
     // AuthenticationComponent performs identity checks automatically
     // at Controller.startup unless actions are whitelisted in controllers.
+
+    /**
+     * beforeRender callback.
+     * Sets the current user to view variables for all actions.
+     *
+     * @param \Cake\Event\EventInterface $event Event instance
+     * @return void
+     */
+    public function beforeRender(EventInterface $event): void
+    {
+        parent::beforeRender($event);
+
+        $user = $this->getUser();
+        $this->set(compact('user'));
+    }
+
+    /**
+     * Helper to get the current authenticated user/identity.
+     * Uses the request attribute set by the Authentication middleware.
+     *
+     * @return object|null
+     */
+    protected function getUser(): ?object
+    {
+        return $this->getRequest()->getAttribute('identity');
+    }
 }
