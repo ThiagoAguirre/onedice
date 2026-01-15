@@ -56,7 +56,7 @@
         </div>
 
         <!-- MESTRE -->
-        <div id="panel-mestre" class="role-panel role-panel-mestre glow-border-mestre" data-role="MESTRE" data-url="<?= $this->Url->build(['controller' => 'Master', 'action' => 'index']); ?>">
+        <div id="panel-mestre" class="role-panel role-panel-mestre glow-border-mestre" data-role="MESTRE" data-url="<?= $this->Url->build(['controller' => 'MasterCampaigns', 'action' => 'add']); ?>">
           <div class="corner tr mestre"></div>
           <div class="corner br mestre"></div>
 
