@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\I18n\I18n;
+
 /**
  * MasterCampaigns Controller
  *
@@ -55,7 +57,24 @@ class MasterCampaignsController extends AppController
             $this->Flash->error(__('The master campaign could not be saved. Please, try again.'));
         }
         $masterUsers = $this->MasterCampaigns->MasterUsers->find('list', limit: 200)->all();
-        $systems = $this->MasterCampaigns->Systems->find('list', limit: 200)->all();
+        $systemTranslations = $this->getTableLocator()->get('SystemTranslations');
+        $locale = (string)I18n::getLocale();
+        $prefix = strtolower(substr($locale, 0, 2));
+        $map = [
+            'pt' => 'pt_BR',
+            'en' => 'en_US',
+            'es' => 'es_ES',
+        ];
+        $dbLocale = $map[$prefix] ?? $locale;
+        $systems = $systemTranslations->find(
+            'list',
+            keyField: 'system_id',
+            valueField: 'name',
+        )
+            ->where(['locale' => $dbLocale])
+            ->order(['name' => 'ASC'])
+            ->limit(200)
+            ->toArray();
         $this->set(compact('masterCampaign', 'masterUsers', 'systems'));
     }
 
@@ -79,7 +98,23 @@ class MasterCampaignsController extends AppController
             $this->Flash->error(__('The master campaign could not be saved. Please, try again.'));
         }
         $masterUsers = $this->MasterCampaigns->MasterUsers->find('list', limit: 200)->all();
-        $systems = $this->MasterCampaigns->Systems->find('list', limit: 200)->all();
+        $systemTranslations = $this->getTableLocator()->get('SystemTranslations');
+        $locale = (string)I18n::getLocale();
+        $prefix = strtolower(substr($locale, 0, 2));
+        $map = [
+            'pt' => 'pt_BR',
+            'en' => 'en_US',
+            'es' => 'es_ES',
+        ];
+        $dbLocale = $map[$prefix] ?? $locale;
+        $systems = $systemTranslations->find('list', [
+            'keyField' => 'system_id',
+            'valueField' => 'name',
+        ])
+            ->where(['locale' => $dbLocale])
+            ->order(['name' => 'ASC'])
+            ->limit(200)
+            ->toArray();
         $this->set(compact('masterCampaign', 'masterUsers', 'systems'));
     }
 
