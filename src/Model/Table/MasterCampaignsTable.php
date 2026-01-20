@@ -82,7 +82,7 @@ class MasterCampaignsTable extends Table
         $validator
             ->scalar('cover_image')
             ->maxLength('cover_image', 255)
-            ->allowEmptyFile('cover_image');
+            ->allowEmptyString('cover_image');
 
         $validator
             ->boolean('is_public')

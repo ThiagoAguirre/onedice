@@ -28,7 +28,15 @@
                 </tr>
                 <tr>
                     <th><?= __('Cover Image') ?></th>
-                    <td><?= h($masterCampaign->cover_image) ?></td>
+                    <td>
+                        <?php if (!empty($masterCampaign->cover_image)) : ?>
+                            <?= $this->Html->image($masterCampaign->cover_image, [
+                                'alt' => $masterCampaign->name,
+                                'style' => 'max-width: 300px; height: auto;',
+                            ]) ?>
+                            <div><?= h($masterCampaign->cover_image) ?></div>
+                        <?php endif; ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Invite Code') ?></th>

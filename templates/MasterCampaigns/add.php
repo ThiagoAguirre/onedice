@@ -159,7 +159,7 @@ echo $this->Html->scriptBlock(
     <!-- Main Content -->
     <main class="w-full max-w-5xl relative z-10 animate-enter mt-20 sm:mt-24 mb-12">
         
-        <?= $this->Form->create($masterCampaign, ['type' => 'post', 'class' => 'w-full grid grid-cols-1 lg:grid-cols-12 gap-6']) ?>
+        <?= $this->Form->create($masterCampaign, ['type' => 'file', 'class' => 'w-full grid grid-cols-1 lg:grid-cols-12 gap-6']) ?>
             
             <!-- Header Section -->
             <div class="lg:col-span-12 mb-2 relative">
@@ -185,7 +185,10 @@ echo $this->Html->scriptBlock(
                         <!-- Campaign Title -->
                         <div class="group relative">
                             <label class="block text-[10px] font-bold tracking-widest text-[#666666] uppercase mb-2">Designação da Campanha</label>
-                            <input type="text" value="Crônicas do Vazio" class="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-lg px-4 py-3 text-lg font-medium text-[#0F0F0F] placeholder:text-[#CCCCCC] focus:outline-none focus:border-[#B11226] focus:ring-1 focus:ring-[#B11226] transition-all">
+                            <?= $this->Form->text('name', [
+                                'class' => 'w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-lg px-4 py-3 text-lg font-medium text-[#0F0F0F] placeholder:text-[#CCCCCC] focus:outline-none focus:border-[#B11226] focus:ring-1 focus:ring-[#B11226] transition-all',
+                                'placeholder' => 'Crônicas do Vazio'
+                            ]) ?>
                         </div>
 
                         <!-- Grid: System & Date -->
@@ -204,7 +207,10 @@ echo $this->Html->scriptBlock(
                             <div class="group">
                                 <label class="block text-[10px] font-bold tracking-widest text-[#666666] uppercase mb-2">Data de Início</label>
                                 <div class="relative">
-                                    <input type="date" class="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-lg px-4 py-3 text-sm font-medium text-[#0F0F0F] focus:outline-none focus:border-[#B11226] focus:ring-1 focus:ring-[#B11226] cursor-pointer hover:bg-[#F5F5F5]">
+                                    <?= $this->Form->text('start_date', [
+                                        'type' => 'date',
+                                        'class' => 'w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-lg px-4 py-3 text-sm font-medium text-[#0F0F0F] focus:outline-none focus:border-[#B11226] focus:ring-1 focus:ring-[#B11226] cursor-pointer hover:bg-[#F5F5F5]'
+                                    ]) ?>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +218,11 @@ echo $this->Html->scriptBlock(
                         <!-- Description -->
                         <div class="group">
                             <label class="block text-[10px] font-bold tracking-widest text-[#666666] uppercase mb-2">Sinopse do Mundo</label>
-                            <textarea rows="4" class="w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-lg px-4 py-3 text-sm text-[#0F0F0F] placeholder:text-[#999999] focus:outline-none focus:border-[#B11226] focus:ring-1 focus:ring-[#B11226] resize-none leading-relaxed" placeholder="Descreva os parâmetros iniciais da realidade..."></textarea>
+                            <?= $this->Form->textarea('description', [
+                                'rows' => 4,
+                                'class' => 'w-full bg-[#FAFAFA] border border-[#E5E5E5] rounded-lg px-4 py-3 text-sm text-[#0F0F0F] placeholder:text-[#999999] focus:outline-none focus:border-[#B11226] focus:ring-1 focus:ring-[#B11226] resize-none leading-relaxed',
+                                'placeholder' => 'Descreva os parâmetros iniciais da realidade...'
+                            ]) ?>
                         </div>
                     </div>
                 </div>
@@ -226,9 +236,9 @@ echo $this->Html->scriptBlock(
                                 <span class="text-[10px] font-bold tracking-widest text-[#666666] uppercase">Capacidade</span>
                                 <span class="text-xs text-[#999999] mt-0.5">Slots de Jogadores</span>
                             </div>
-                            <span class="text-2xl font-bold text-[#0F0F0F] font-mono" id="playerValue">04</span>
+                            <span class="text-2xl font-bold text-[#0F0F0F] font-mono" id="playerValue"><?= h($masterCampaign->max_players ?? 4) ?></span>
                         </div>
-                        <input type="range" min="1" max="12" value="4" class="w-full" oninput="document.getElementById('playerValue').innerText = this.value.toString().padStart(2, '0')">
+                        <input type="range" name="max_players" min="1" max="12" value="<?= h($masterCampaign->max_players ?? 4) ?>" class="w-full" oninput="document.getElementById('playerValue').innerText = this.value.toString().padStart(2, '0')">
                         <div class="flex justify-between text-[10px] text-[#999999] font-mono mt-3 uppercase font-medium">
                             <span>Solo</span>
                             <span>Standard</span>
@@ -239,7 +249,8 @@ echo $this->Html->scriptBlock(
                     <!-- Visibility Toggle -->
                     <div class="bg-white rounded-2xl p-6 card-shadow border border-[#E5E5E5] flex flex-col justify-center cursor-pointer hover:border-[#CCCCCC] transition-colors">
                         <label class="cursor-pointer h-full flex flex-col justify-center">
-                            <input type="checkbox" class="peer sr-only">
+                            <input type="hidden" name="is_public" value="0">
+                            <input type="checkbox" name="is_public" value="1" class="peer sr-only" <?= !empty($masterCampaign->is_public) ? 'checked' : '' ?>>
                             <div class="flex justify-between items-center mb-2">
                                 <span class="text-[10px] font-bold tracking-widest text-[#666666] uppercase peer-checked:text-[#0F0F0F]">Visibilidade Pública</span>
                                 <div class="w-10 h-5 bg-[#E5E5E5] rounded-full peer-checked:bg-[#B11226] relative transition-colors">
@@ -265,7 +276,11 @@ echo $this->Html->scriptBlock(
                             <i data-lucide="image-plus" class="w-6 h-6"></i>
                         </div>
                         <span class="text-xs font-bold text-[#0F0F0F] uppercase tracking-wide">Alterar Artefato</span>
-                        <input type="file" class="absolute inset-0 w-full h-full cursor-pointer opacity-0" title="Alterar Capa">
+                        <?= $this->Form->file('cover_image_file', [
+                            'class' => 'absolute inset-0 w-full h-full cursor-pointer opacity-0',
+                            'title' => 'Alterar Capa',
+                            'accept' => 'image/jpeg,image/png,image/webp',
+                        ]) ?>
                     </div>
 
                     <div class="w-full h-full rounded-xl overflow-hidden relative bg-[#F5F5F5]">
@@ -281,19 +296,19 @@ echo $this->Html->scriptBlock(
                 <div class="bg-white rounded-2xl p-2 card-shadow border border-[#E5E5E5]">
                     <div class="bg-[#F5F5F5] p-1 rounded-xl grid grid-cols-3 gap-1 relative">
                         <label class="cursor-pointer relative z-10">
-                            <input type="radio" name="status" class="tab-radio sr-only" checked>
+                            <input type="radio" name="status" value="draft" class="tab-radio sr-only" <?= (!empty($masterCampaign->status) && $masterCampaign->status === 'draft') || empty($masterCampaign->status) ? 'checked' : '' ?>>
                             <div class="flex flex-col items-center justify-center py-2.5 rounded-lg text-[#999999] hover:text-[#666666] transition-all">
                                 <span class="text-[10px] font-bold tracking-wider uppercase">Draft</span>
                             </div>
                         </label>
                         <label class="cursor-pointer relative z-10">
-                            <input type="radio" name="status" class="tab-radio sr-only">
+                            <input type="radio" name="status" value="live" class="tab-radio sr-only" <?= (!empty($masterCampaign->status) && $masterCampaign->status === 'live') ? 'checked' : '' ?>>
                             <div class="flex flex-col items-center justify-center py-2.5 rounded-lg text-[#999999] hover:text-[#666666] transition-all">
                                 <span class="text-[10px] font-bold tracking-wider uppercase">Live</span>
                             </div>
                         </label>
                         <label class="cursor-pointer relative z-10">
-                            <input type="radio" name="status" class="tab-radio sr-only">
+                            <input type="radio" name="status" value="hold" class="tab-radio sr-only" <?= (!empty($masterCampaign->status) && $masterCampaign->status === 'hold') ? 'checked' : '' ?>>
                             <div class="flex flex-col items-center justify-center py-2.5 rounded-lg text-[#999999] hover:text-[#666666] transition-all">
                                 <span class="text-[10px] font-bold tracking-wider uppercase">Hold</span>
                             </div>
@@ -311,7 +326,11 @@ echo $this->Html->scriptBlock(
                     </div>
                     
                     <div class="text-center py-2 bg-[#FAFAFA] border border-dashed border-[#E5E5E5] rounded-lg mb-4">
-                        <span class="text-2xl font-mono font-bold text-[#0F0F0F] tracking-[0.2em]">K7-X92</span>
+                        <?= $this->Form->text('invite_code', [
+                            'class' => 'text-2xl font-mono font-bold text-[#0F0F0F] tracking-[0.2em] border-none bg-transparent text-center w-full',
+                            'label' => false,
+                            'placeholder' => 'K7-X92'
+                        ]) ?>
                     </div>
                     
                     <div class="flex justify-between items-center text-[10px] text-[#999999] uppercase tracking-wide font-medium">
@@ -340,7 +359,7 @@ echo $this->Html->scriptBlock(
                     <button type="submit" class="flex-1 sm:flex-none relative group px-8 py-2.5 bg-[#B11226] text-white rounded-xl overflow-hidden hover:bg-[#8E0F1E] shadow-lg shadow-red-900/10 transition-all duration-300">
                         <span class="relative flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest">
                             <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                            Materializar
+                            Salvar
                         </span>
                     </button>
                 </div>
