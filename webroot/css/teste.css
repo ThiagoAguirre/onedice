@@ -1,0 +1,56 @@
+/* Styles moved from inline cssBlock in templates/MasterCampaigns/index.php */
+.master-shell { max-width: 1180px; margin: 0 auto; padding: 30px 14px 48px; }
+.master-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.header-eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #B11226; font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+.header-title { font-size: 34px; margin: 4px 0 6px; font-weight: 800; color: #101010; letter-spacing: -0.02em; }
+.header-sub { color: #5A5A5A; font-size: 14px; margin: 0; }
+.primary-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; background: #B11226; color: #fff; border: 1px solid #970f1f; box-shadow: 0 12px 28px rgba(177, 18, 38, 0.28); font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; font-size: 13px; transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease; }
+.primary-btn:hover { background: #970f1f; transform: translateY(-1px); box-shadow: 0 16px 32px rgba(177, 18, 38, 0.32); }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 22px; }
+.kpi-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 14px; padding: 16px 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+.kpi-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #666; font-weight: 700; margin-bottom: 6px; }
+.kpi-value { font-size: 28px; font-weight: 800; margin: 0; line-height: 1.2; }
+.search-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 18px; }
+.search-form { position: relative; flex: 1; min-width: 280px; }
+.search-input { width: 100%; background: #fff; border: 1px solid #e6e6e6; border-radius: 12px; padding: 12px 16px 12px 44px; font-size: 14px; color: #0f0f0f; box-shadow: 0 8px 22px rgba(0,0,0,0.04); transition: border-color 150ms ease, box-shadow 150ms ease; }
+.search-input:focus { outline: none; border-color: #B11226; box-shadow: 0 0 0 3px rgba(177, 18, 38, 0.18); }
+.search-icon { position: absolute; top: 50%; left: 16px; transform: translateY(-50%); color: #A0A0A0; }
+.filters-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 999px; border: 1px solid #e6e6e6; background: #fff; color: #505050; font-weight: 700; font-size: 13px; text-decoration: none; transition: all 120ms ease; }
+.pill:hover { border-color: #d6d6d6; color: #0f0f0f; box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+.pill.is-active { background: #efefef; border-color: #d9d9d9; color: #0f0f0f; box-shadow: 0 12px 26px rgba(0,0,0,0.08); }
+.view-toggle { display: inline-flex; align-items: center; gap: 6px; padding: 6px; border-radius: 14px; border: 1px solid #e6e6e6; background: #fff; box-shadow: 0 8px 18px rgba(0,0,0,0.05); }
+.view-toggle a { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; color: #6b7280; text-decoration: none; transition: all 120ms ease; }
+.view-toggle a.is-active { background: #B11226; color: #fff; box-shadow: 0 14px 26px rgba(177, 18, 38, 0.35); }
+.campaign-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+.campaign-grid.list-mode { grid-template-columns: 1fr; }
+.campaign-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 18px; overflow: hidden; box-shadow: 0 12px 28px rgba(0,0,0,0.07); transition: transform 140ms ease, box-shadow 140ms ease; display: flex; flex-direction: column; min-height: 100%; }
+.campaign-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(0,0,0,0.1); }
+.campaign-card.is-list { flex-direction: row; min-height: 220px; }
+.cover { position: relative; height: 190px; background: linear-gradient(135deg, #E8EEF5, #D9D2F0); overflow: hidden; }
+.campaign-card.is-list .cover { width: 42%; min-width: 280px; height: auto; }
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cover-placeholder { display: flex; align-items: center; justify-content: center; color: #fff; }
+.cover-initial { font-size: 64px; font-weight: 800; opacity: 0.82; }
+.chip { position: absolute; padding: 9px 12px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; display: inline-flex; gap: 6px; align-items: center; }
+.chip.system { left: 14px; bottom: 14px; background: #fff; color: #0f0f0f; box-shadow: 0 8px 18px rgba(0,0,0,0.15); }
+.chip.status { right: 14px; top: 14px; border: 1px solid transparent; }
+.card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 12px; height: 100%; }
+.card-head h3 { margin: 0; font-size: 18px; font-weight: 800; color: #111; }
+.card-head p { margin: 4px 0 0; color: #5c5c5c; font-size: 14px; line-height: 1.55; }
+.meta-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #606060; font-size: 13px; flex-wrap: wrap; }
+.meta-group { display: inline-flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.meta-item { display: inline-flex; align-items: center; gap: 6px; }
+.privacy { font-size: 12px; font-weight: 800; text-transform: uppercase; color: #B11226; }
+.actions-row { margin-top: auto; display: flex; justify-content: flex-end; }
+.empty-state { grid-column: 1 / -1; text-align: center; color: #7a7a7a; padding: 20px 0; font-weight: 600; }
+.paginator { margin-top: 22px; color: #666; }
+.paginator .pagination { display: flex; align-items: center; gap: 8px; padding: 0; list-style: none; }
+.paginator .pagination li { display: inline-flex; }
+.paginator .pagination a { padding: 8px 12px; border-radius: 10px; border: 1px solid #e6e6e6; background: #fff; color: #444; text-decoration: none; font-weight: 700; }
+.paginator .pagination .current { padding: 8px 12px; border-radius: 10px; background: #B11226; color: #fff; border: 1px solid #970f1f; }
+.paginator .pagination a:hover { border-color: #d7d7d7; color: #0f0f0f; }
+@media (max-width: 768px) {
+    .campaign-card.is-list { flex-direction: column; }
+    .campaign-card.is-list .cover { width: 100%; min-width: auto; height: 190px; }
+}
