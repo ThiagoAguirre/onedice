@@ -326,11 +326,10 @@ echo $this->Html->scriptBlock(
                     </div>
                     
                     <div class="text-center py-2 bg-[#FAFAFA] border border-dashed border-[#E5E5E5] rounded-lg mb-4">
-                        <?= $this->Form->text('invite_code', [
-                            'class' => 'text-2xl font-mono font-bold text-[#0F0F0F] tracking-[0.2em] border-none bg-transparent text-center w-full',
-                            'label' => false,
-                            'placeholder' => 'K7-X92'
-                        ]) ?>
+                        <div class="text-2xl font-mono font-bold text-[#0F0F0F] tracking-[0.2em] border-none bg-transparent text-center w-full">
+                            <?= h($masterCampaign->invite_code ?? '—') ?>
+                        </div>
+                        <?= $this->Form->hidden('invite_code') ?>
                     </div>
                     
                     <div class="flex justify-between items-center text-[10px] text-[#999999] uppercase tracking-wide font-medium">

@@ -49,6 +49,12 @@ class MasterCampaignsController extends AppController
     public function add()
     {
         $masterCampaign = $this->MasterCampaigns->newEmptyEntity();
+        // Prefill a generated invite code so it appears on the form (non-editable)
+        try {
+            $masterCampaign->invite_code = $this->MasterCampaigns->generateInviteCode();
+        } catch (\Exception $e) {
+            // If generation fails, leave empty — table beforeSave will still attempt to set one
+        }
         if ($this->request->is('post')) {
             $data = $this->request->getData();
             $uploadedFile = $data['cover_image_file'] ?? null;

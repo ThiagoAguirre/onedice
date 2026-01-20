@@ -31,7 +31,14 @@
                     echo $this->Form->control('is_public');
                     echo $this->Form->control('max_players');
                     echo $this->Form->control('start_date', ['empty' => true]);
-                    echo $this->Form->control('invite_code');
+                    // Invite code is generated and must not be editable by users.
+                    echo $this->Form->hidden('invite_code');
+                    ?>
+                    <div class="input readonly">
+                        <label><?= __('Invite Code') ?></label>
+                        <p class="form-control-static"><?= h($masterCampaign->invite_code) ?></p>
+                    </div>
+                    <?php
                     echo $this->Form->control('status');
                     echo $this->Form->control('system_id', ['options' => $systems, 'empty' => true]);
                 ?>

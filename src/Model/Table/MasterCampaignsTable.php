@@ -7,6 +7,10 @@ use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Event\EventInterface;
+use Cake\Datasource\EntityInterface;
+use ArrayObject;
+use Cake\Utility\Text;
 
 /**
  * MasterCampaigns Model
@@ -112,6 +116,52 @@ class MasterCampaignsTable extends Table
             ->allowEmptyString('system_id');
 
         return $validator;
+    }
+
+    /**
+     * beforeSave callback - ensure a unique invite_code is set for new records
+     *
+     * @param \Cake\Event\EventInterface $event
+     * @param \Cake\Datasource\EntityInterface $entity
+     * @param \ArrayObject $options
+     * @return void
+     */
+    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
+    {
+        if ($entity->isNew() && empty($entity->invite_code)) {
+            $entity->invite_code = $this->generateInviteCode();
+        }
+    }
+
+    /**
+     * Generate a short, human-readable invite code and ensure uniqueness.
+     * Format: XX-XXX (hex characters)
+     *
+     * @return string
+     */
+    public function generateInviteCode(): string
+    {
+        // Try a few times to avoid collisions
+        for ($i = 0; $i < 10; $i++) {
+            try {
+                $part1 = strtoupper(substr(bin2hex(random_bytes(2)), 0, 2));
+                $part2 = strtoupper(substr(bin2hex(random_bytes(2)), 0, 3));
+            } catch (\Exception $e) {
+                // Fallback to Text::uuid if random_bytes fails
+                $uuid = Text::uuid();
+                $part1 = strtoupper(substr(preg_replace('/[^A-Z0-9]/', '', $uuid), 0, 2));
+                $part2 = strtoupper(substr(preg_replace('/[^A-Z0-9]/', '', $uuid), 2, 3));
+            }
+
+            $code = $part1 . '-' . $part2;
+
+            $exists = (int)$this->find()->where(['invite_code' => $code])->count();
+            if ($exists === 0) {
+                return $code;
+            }
+        }
+
+        throw new \RuntimeException('Unable to generate a unique invite code after multiple attempts.');
     }
 
     /**
