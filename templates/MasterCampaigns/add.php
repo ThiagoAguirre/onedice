@@ -13,6 +13,11 @@ echo $this->Html->scriptBlock(
 // Observação: fontes e outros assets globais devem ser carregados no layout.
 ?>
 
+<?php
+// Preview src: use saved cover if present, otherwise a placeholder image
+$previewSrc = !empty($masterCampaign->cover_image) ? $this->Url->build('/' . $masterCampaign->cover_image) : 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2508&auto=format&fit=crop';
+?>
+
 
 <div class="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6 lg:p-8 relative">
 
@@ -277,6 +282,7 @@ echo $this->Html->scriptBlock(
                         </div>
                         <span class="text-xs font-bold text-[#0F0F0F] uppercase tracking-wide">Alterar Artefato</span>
                         <?= $this->Form->file('cover_image_file', [
+                            'id' => 'coverImageFile',
                             'class' => 'absolute inset-0 w-full h-full cursor-pointer opacity-0',
                             'title' => 'Alterar Capa',
                             'accept' => 'image/jpeg,image/png,image/webp',
@@ -284,7 +290,7 @@ echo $this->Html->scriptBlock(
                     </div>
 
                     <div class="w-full h-full rounded-xl overflow-hidden relative bg-[#F5F5F5]">
-                        <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2508&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 transition-transform duration-700">
+                        <img id="coverImagePreview" src="<?= h($previewSrc) ?>" class="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 transition-transform duration-700" alt="Cover preview">
                         <!-- Tag -->
                         <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded shadow-sm border border-white/50">
                             <span class="text-[10px] font-bold tracking-widest uppercase text-[#0F0F0F]">Cover</span>
@@ -374,4 +380,31 @@ echo $this->Html->scriptBlock(
 // O layout deve fazer echo $this->fetch('css') e echo $this->fetch('script') no local adequado.
 echo $this->Html->css('master', ['block' => true]);
 echo $this->Html->script('hamburger', ['block' => true]);
+// Script block to preview uploaded cover image immediately
+echo $this->Html->scriptBlock(
+    "document.addEventListener('DOMContentLoaded', function(){
+        var input = document.getElementById('coverImageFile');
+        var preview = document.getElementById('coverImagePreview');
+        if(!input || !preview) return;
+        input.addEventListener('change', function(){
+            var file = this.files && this.files[0];
+            if(!file) return;
+            var allowed = ['image/jpeg','image/png','image/webp'];
+            if(allowed.indexOf(file.type) === -1){
+                alert('Tipo de imagem inválido. Use JPG, PNG ou WEBP.');
+                this.value = '';
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function(e){
+                preview.src = e.target.result;
+                preview.style.filter = 'none';
+                preview.style.opacity = '1';
+                preview.style.transform = 'scale(1.03)';
+            };
+            reader.readAsDataURL(file);
+        });
+    });",
+    ['block' => true]
+);
 ?>

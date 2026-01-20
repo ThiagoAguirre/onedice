@@ -14,7 +14,8 @@
 .Spotlight-V100
 .Trashes
 # Icon must end with two \r
-Icon
+Icon
+
 ehthumbs.db
 Thumbs.db
 .directory
@@ -50,3 +51,12 @@ nbproject/*
 # yarn
 yarn-debug.log
 yarn-error.log
+
+# Ignore uploaded campaign images
+# Ignore the campaigns upload directory and all its contents
+/webroot/uploads/campaigns/
+/webroot/uploads/campaigns/**
+
+# Common typo variant
+/webroot/uploads/campaings/
+/webroot/uploads/campaings/**
