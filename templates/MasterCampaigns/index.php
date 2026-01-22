@@ -9,6 +9,7 @@ $this->assign('title', 'Minhas Campanhas');
 
 echo $this->Html->script('https://unpkg.com/lucide@latest', ['block' => true]);
 echo $this->Html->scriptBlock('document.addEventListener("DOMContentLoaded", function(){ if (window.lucide) { lucide.createIcons(); } });', ['block' => true]);
+echo $this->Html->css('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap', ['block' => true]);
 echo $this->Html->css('teste', ['block' => true]);
 
 // Normalize campaigns into a plain array
@@ -35,8 +36,8 @@ $normalizeStatus = static function ($value): string {
 
 $statusMeta = [
     'live' => ['label' => 'Ativa', 'color' => '#1B9D63', 'bg' => '#E6F5EC'],
-    'draft' => ['label' => 'Rascunho', 'color' => '#AF7A1B', 'bg' => '#FFF4E1'],
-    'paused' => ['label' => 'Pausada', 'color' => '#9A5C12', 'bg' => '#FFEFE2'],
+    'draft' => ['label' => 'Rascunho', 'color' => '#8C6B2A', 'bg' => '#FFF3DF'],
+    'paused' => ['label' => 'Pausada', 'color' => '#8C5416', 'bg' => '#FFEFE2'],
     'ended' => ['label' => 'Encerrada', 'color' => '#5F6470', 'bg' => '#EEF0F4'],
 ];
 
@@ -76,6 +77,30 @@ $buildQuery = static function (array $params) use ($queryParams): array {
 $leadingZero = static function (int $number): string {
     return $number < 10 ? sprintf('0%d', $number) : (string)$number;
 };
+
+$currentPlayers = static function ($campaign): int {
+    $candidates = [
+        'current_players',
+        'players_count',
+        'player_count',
+        'players',
+    ];
+
+    foreach ($candidates as $prop) {
+        $value = $campaign->{$prop} ?? null;
+        if ($value === null) {
+            continue;
+        }
+        if (is_numeric($value)) {
+            return (int)$value;
+        }
+        if (is_iterable($value)) {
+            return count(is_array($value) ? $value : iterator_to_array($value));
+        }
+    }
+
+    return 0;
+};
 ?>
 
 <div class="master-shell">
@@ -86,7 +111,6 @@ $leadingZero = static function (int $number): string {
                 <span>Painel do Mestre</span>
             </div>
             <div class="header-title">Minhas Campanhas</div>
-            <p class="header-sub">Gerencie campanhas ativas, rascunhos e encerradas em um so lugar.</p>
         </div>
         <div>
             <?= $this->Html->link('<i data-lucide="plus" class="w-4 h-4"></i><span>Nova Campanha</span>', ['action' => 'add'], ['escape' => false, 'class' => 'primary-btn']) ?>
@@ -100,15 +124,15 @@ $leadingZero = static function (int $number): string {
         </div>
         <div class="kpi-card">
             <div class="kpi-label">Ativas</div>
-            <p class="kpi-value" style="color: #1B9D63;"><?= $leadingZero($counts['live']) ?></p>
+            <p class="kpi-value is-live"><?= $leadingZero($counts['live']) ?></p>
         </div>
         <div class="kpi-card">
             <div class="kpi-label">Rascunhos</div>
-            <p class="kpi-value" style="color: #C57B14;"><?= $leadingZero($counts['draft']) ?></p>
+            <p class="kpi-value is-draft"><?= $leadingZero($counts['draft']) ?></p>
         </div>
         <div class="kpi-card">
             <div class="kpi-label">Jogadores</div>
-            <p class="kpi-value" style="color: #B11226;"><?= $leadingZero($players) ?></p>
+            <p class="kpi-value is-players"><?= $leadingZero($players) ?></p>
         </div>
     </div>
 
@@ -171,14 +195,17 @@ $leadingZero = static function (int $number): string {
             if (!empty($c->start_date)) {
                 if (method_exists($c->start_date, 'timeAgoInWords')) {
                     $startLabel = $c->start_date->timeAgoInWords(['accuracy' => ['day' => 'day', 'month' => 'month', 'year' => 'year']]);
-                } elseif (method_exists($c->start_date, 'format')) {
+            } elseif (method_exists($c->start_date, 'format')) {
                     $startLabel = $c->start_date->format('d/m/Y');
                 }
             }
-            $privacy = $c->is_public ? 'Publica' : 'Privada';
+            $playerTotal = (int)($c->max_players ?? 0);
+            $playerDisplay = $playerTotal > 0
+                ? sprintf('%d/%d', $currentPlayers($c), $playerTotal)
+                : (string)$currentPlayers($c);
             ?>
             <div class="campaign-card <?= $viewMode === 'list' ? 'is-list' : '' ?>">
-                <div class="cover <?= $cover ? '' : 'cover-placeholder' ?>" <?= $cover ? '' : 'style="background: linear-gradient(135deg, #F8CACA, #B11226);"' ?>>
+                <div class="cover <?= $cover ? '' : 'cover-placeholder' ?>" <?= $cover ? '' : 'style="background: linear-gradient(135deg, #F7D8D8, #B11226);"' ?>>
                     <?php if ($cover): ?>
                         <img src="<?= h($cover) ?>" alt="<?= h($c->name) ?>">
                     <?php else: ?>
@@ -189,7 +216,7 @@ $leadingZero = static function (int $number): string {
                         <span class="chip system"><?= h(mb_strtoupper($systemName)) ?></span>
                     <?php endif; ?>
                     <?php if (!empty($c->status)): ?>
-                        <span class="chip status" style="color: <?= h($statusConf['color']) ?>; background: <?= h($statusConf['bg']) ?>; border-color: <?= h($statusConf['bg']) ?>;">
+                        <span class="chip status" style="color: <?= h($statusConf['color']) ?>; background: <?= h($statusConf['bg']) ?>;">
                             <?= h(mb_strtoupper($statusConf['label'])) ?>
                         </span>
                     <?php endif; ?>
@@ -205,18 +232,17 @@ $leadingZero = static function (int $number): string {
                         <div class="meta-group">
                             <span class="meta-item">
                                 <i data-lucide="users" class="w-4 h-4"></i>
-                                <?= (int)($c->max_players ?? 0) ?> jogadores
+                                <?= h($playerDisplay) ?>
                             </span>
                             <span class="meta-item">
-                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                                <i data-lucide="clock-3" class="w-4 h-4"></i>
                                 <?= $startLabel !== '' ? h($startLabel) : 'Sem data' ?>
                             </span>
                         </div>
-                        <span class="privacy"><?= h($privacy) ?></span>
                     </div>
 
                     <div class="actions-row">
-                        <?= $this->Html->link('<span>Gerenciar</span><i data-lucide="chevron-right" class="w-4 h-4"></i>', ['action' => 'view', $c->id], ['escape' => false, 'class' => 'primary-btn']) ?>
+                        <?= $this->Html->link('<span>Gerenciar</span><i data-lucide="chevron-right" class="w-4 h-4"></i>', ['action' => 'view', $c->id], ['escape' => false, 'class' => 'primary-btn primary-btn--full']) ?>
                     </div>
                 </div>
             </div>
