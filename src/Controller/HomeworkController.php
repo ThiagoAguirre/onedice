@@ -42,6 +42,7 @@ class HomeworkController extends AppController
 
         // Expose to view
         $this->set(compact('user', 'query', 'data'));
+        $this->set('hideTopNav', true);
     }
 
 }

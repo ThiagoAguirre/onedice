@@ -67,6 +67,23 @@ class AppController extends Controller
     {
         parent::beforeRender($event);
 
+        // Defina controllers e actions sem layout
+        $semLayout = [
+            'Users' => ['home'],
+            // 'Homework' => ['choice']
+            // Exemplo: 'OutroController' => ['action1', 'action2'],
+        ];
+
+        $controller = $this->getRequest()->getParam('controller');
+        $action = $this->getRequest()->getParam('action');
+
+        if (
+            isset($semLayout[$controller]) &&
+            in_array($action, $semLayout[$controller], true)
+        ) {
+            $this->viewBuilder()->disableAutoLayout();
+        }
+
         $user = $this->getUser();
         $this->set(compact('user'));
     }

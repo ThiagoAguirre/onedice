@@ -14,7 +14,11 @@
  * @var \App\View\AppView $this
  */
 
+/**
+ * Se a variável $hideTopNav estiver definida e for true, o menu top_nav não será exibido.
+ */
 $cakeDescription = 'CakePHP: the rapid development php framework';
+$hideTopNav = $hideTopNav ?? false;
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +36,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <?= $this->element('top_nav') ?>
+    <?php if (!$hideTopNav): ?>
+        <?= $this->element('top_nav') ?>
+    <?php endif; ?>
     <main class="main" style="padding-top:64px;">
         <div class="container">
             <?= $this->Flash->render() ?>
