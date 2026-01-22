@@ -50,7 +50,7 @@ class UsersController extends AppController
         $this->request->allowMethod(['get']);
         // Disable CakePHP default layout so the view can render
         // a full standalone landing page (includes its own <html>/<head>/<body>)
-        $this->viewBuilder()->disableAutoLayout();
+        // $this->viewBuilder()->disableAutoLayout();
     }
 
     /**
