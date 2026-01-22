@@ -140,6 +140,9 @@ class MasterCampaignsController extends AppController
             }
         }
         $masterUsers = $this->MasterCampaigns->MasterUsers->find('list', limit: 200)->all();
+
+        // Try to load translated system names for the current locale. If none
+        // are present, fall back to the base `systems` table (id => slug).
         $systemTranslations = $this->getTableLocator()->get('SystemTranslations');
         $locale = (string)I18n::getLocale();
         $prefix = strtolower(substr($locale, 0, 2));
@@ -148,16 +151,28 @@ class MasterCampaignsController extends AppController
             'en' => 'en_US',
             'es' => 'es_ES',
         ];
-        $dbLocale = $map[$prefix] ?? $locale;
+
         $systems = $systemTranslations->find(
             'list',
             keyField: 'system_id',
-            valueField: 'name',
+            valueField: 'name'
         )
-            ->where(['locale' => $dbLocale])
+            ->where(['locale LIKE' => $prefix . '%'])
             ->order(['name' => 'ASC'])
             ->limit(200)
             ->toArray();
+
+        if (empty($systems)) {
+            $systemsTable = $this->getTableLocator()->get('Systems');
+            $systems = $systemsTable->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'slug'
+            ])
+                ->order(['slug' => 'ASC'])
+                ->limit(200)
+                ->toArray();
+        }
+
         $this->set(compact('masterCampaign', 'masterUsers', 'systems'));
     }
 
@@ -254,6 +269,9 @@ class MasterCampaignsController extends AppController
             }
         }
         $masterUsers = $this->MasterCampaigns->MasterUsers->find('list', limit: 200)->all();
+
+        // Try to load translated system names for the current locale. If none
+        // are present, fall back to the base `systems` table (id => slug).
         $systemTranslations = $this->getTableLocator()->get('SystemTranslations');
         $locale = (string)I18n::getLocale();
         $prefix = strtolower(substr($locale, 0, 2));
@@ -262,15 +280,27 @@ class MasterCampaignsController extends AppController
             'en' => 'en_US',
             'es' => 'es_ES',
         ];
-        $dbLocale = $map[$prefix] ?? $locale;
+
         $systems = $systemTranslations->find('list', [
             'keyField' => 'system_id',
             'valueField' => 'name',
         ])
-            ->where(['locale' => $dbLocale])
+            ->where(['locale LIKE' => $prefix . '%'])
             ->order(['name' => 'ASC'])
             ->limit(200)
             ->toArray();
+
+        if (empty($systems)) {
+            $systemsTable = $this->getTableLocator()->get('Systems');
+            $systems = $systemsTable->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'slug'
+            ])
+                ->order(['slug' => 'ASC'])
+                ->limit(200)
+                ->toArray();
+        }
+
         $this->set(compact('masterCampaign', 'masterUsers', 'systems'));
     }
 

@@ -72,8 +72,10 @@ class SystemsTable extends Table
             ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->boolean('is_active')
-            ->notEmptyString('is_active');
+            ->add('is_active', 'inList', [
+                'rule' => ['inList', [0, 1, '0', '1', true, false, 'true', 'false']],
+                'message' => 'Por favor, informe um valor válido para is_active.'
+            ]);
 
         return $validator;
     }

@@ -36,4 +36,25 @@ class System extends Entity
         'master_campaigns' => true,
         'system_translations' => true,
     ];
+
+    /**
+     * Casts for database-backed fields. MariaDB stores booleans as TINYINT,
+     * so keep the DB cast as integer and expose a boolean accessor below.
+     *
+     * @var array<string, string>
+     */
+    protected array $_casts = [
+        'is_active' => 'integer',
+    ];
+
+    /**
+     * Accessor: always return boolean for `is_active` even when stored as TINYINT.
+     *
+     * @param mixed $value Raw value from the entity/properties
+     * @return bool
+     */
+    protected function _getIsActive($value): bool
+    {
+        return (bool)$value;
+    }
 }
