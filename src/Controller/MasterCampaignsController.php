@@ -29,6 +29,29 @@ class MasterCampaignsController extends AppController
     }
 
     /**
+     * Home method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function home()
+    {
+        $user = $this->getUser();
+        $greetingName = 'Mestre';
+        if ($user) {
+            $candidate = $user->name ?? $user->username ?? null;
+            if (is_string($candidate) && trim($candidate) !== '') {
+                $candidate = trim($candidate);
+                $firstName = strtok($candidate, ' ');
+                if (is_string($firstName) && $firstName !== '') {
+                    $greetingName = $firstName;
+                }
+            }
+        }
+
+        $this->set(compact('greetingName'));
+    }
+
+    /**
      * View method
      *
      * @param string|null $id Master Campaign id.
