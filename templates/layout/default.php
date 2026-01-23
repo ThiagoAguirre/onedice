@@ -39,7 +39,7 @@ $hideTopNav = $hideTopNav ?? false;
     <?php if (!$hideTopNav): ?>
         <?= $this->element('top_nav') ?>
     <?php endif; ?>
-    <main class="main" style="padding-top:64px;">
+    <main class="main">
         <div class="container">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>

@@ -29,7 +29,7 @@ class UsersController extends AppController
 
         if ($result && $result->isValid()) {
             $redirect = $this->request->getQuery('redirect') ?: $this->request->getData('redirect');
-            $redirect = $redirect ?: ['controller' => 'Homework', 'action' => 'choice'];
+            $redirect = $redirect ?: ['controller' => 'Users', 'action' => 'choice'];
             return $this->redirect($redirect);
         }
 
@@ -83,5 +83,24 @@ class UsersController extends AppController
             $this->Flash->error(__('Unable to register. Please, try again.'));
         }
         $this->set(compact('user'));
+    }
+
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function choice()
+    {
+        // Logged-in user identity from Authentication plugin
+        $user = $this->Authentication->getIdentity();
+
+        // Receive optional data
+        $query = $this->request->getQueryParams();
+        $data = $this->request->getData(); // empty array for non-POST
+
+        // Expose to view
+        $this->set(compact('user', 'query', 'data'));
+        $this->set('hideTopNav', true);
     }
 }

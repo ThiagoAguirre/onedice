@@ -70,7 +70,7 @@ class AppController extends Controller
         // Defina controllers e actions sem layout
         $semLayout = [
             'Users' => ['home'],
-            // 'Homework' => ['choice']
+            // '' => ['choice']
             // Exemplo: 'OutroController' => ['action1', 'action2'],
         ];
 

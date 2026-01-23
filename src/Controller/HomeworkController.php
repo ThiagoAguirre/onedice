@@ -26,23 +26,7 @@ class HomeworkController extends AppController
         $this->set('user', $this->Authentication->getIdentity());
     }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function choice()
-    {
-        // Logged-in user identity from Authentication plugin
-        $user = $this->Authentication->getIdentity();
-
-        // Receive optional data
-        $query = $this->request->getQueryParams();
-        $data = $this->request->getData(); // empty array for non-POST
-
-        // Expose to view
-        $this->set(compact('user', 'query', 'data'));
-        $this->set('hideTopNav', true);
-    }
+    
+    
 
 }
