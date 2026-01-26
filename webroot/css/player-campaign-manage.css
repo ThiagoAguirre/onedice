@@ -1,0 +1,343 @@
+/* Player campaign manage view */
+
+:root {
+    --red: #b11226;
+    --green: #1b9d63;
+    --gray-50: #faf9f7;
+    --gray-100: #f3f1ee;
+    --gray-200: #e7e2db;
+    --gray-300: #dbd4cc;
+    --gray-500: #7a746d;
+    --text: #141414;
+    --card: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(900px 320px at 5% -10%, #fff0e6 0%, transparent 60%),
+        radial-gradient(700px 260px at 90% -5%, #e6f2ff 0%, transparent 55%),
+        var(--gray-50);
+    color: var(--text);
+}
+
+.top-nav,
+footer {
+    display: none;
+}
+
+.main {
+    padding: 0;
+}
+
+.main .container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.player-campaign {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 26px 22px 60px;
+}
+
+.player-topbar {
+    margin-bottom: 16px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--gray-300);
+    background: #fff;
+    color: #222;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10px;
+}
+
+.player-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
+
+.player-main {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.hero-card {
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--gray-300);
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.hero-media {
+    position: relative;
+    height: 320px;
+    background: #f1f1f1;
+    overflow: hidden;
+}
+
+.hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.cover-initial {
+    font-size: 64px;
+    font-weight: 800;
+    opacity: 0.9;
+}
+
+.hero-status {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.hero-body {
+    padding: 18px 22px 22px;
+}
+
+.hero-body h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.synopsis-card {
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--gray-300);
+    padding: 18px 22px 22px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+}
+
+.card-head span {
+    display: inline-flex;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 800;
+    color: #8b867f;
+    margin-bottom: 10px;
+}
+
+.synopsis-card p {
+    margin: 0;
+    line-height: 1.7;
+    color: #5f5b55;
+    font-size: 14px;
+}
+
+.player-side {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.side-card {
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--gray-300);
+    padding: 18px 20px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+}
+
+.side-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.side-head h2 {
+    margin: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #5c5751;
+}
+
+.side-count {
+    color: var(--red);
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.player-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.player-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #333;
+}
+
+.player-avatar--master {
+    background: var(--red);
+    color: #fff;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.player-info strong {
+    font-size: 13px;
+    color: #141414;
+}
+
+.player-info span {
+    font-size: 12px;
+    color: #7a746d;
+}
+
+.role-pill {
+    margin-left: auto;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #ffe7eb;
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f4f1ee;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    background: #f3dfe1;
+    color: var(--red);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-row small {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #7a746d;
+    font-weight: 800;
+    margin-bottom: 2px;
+}
+
+.detail-row strong {
+    font-size: 13px;
+    color: #171717;
+}
+
+.side-action {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.enter-btn {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    background: var(--red);
+    color: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 12px;
+    box-shadow: 0 18px 30px rgba(177, 18, 38, 0.2);
+    cursor: pointer;
+}
+
+.enter-btn.is-disabled,
+.enter-btn:disabled {
+    background: #d9d4ce;
+    color: #8a847d;
+    border-color: #cfc7bf;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.pending-label {
+    text-align: center;
+    font-size: 12px;
+    color: #8a847d;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .player-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-media {
+        height: 260px;
+    }
+}

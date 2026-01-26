@@ -29,6 +29,47 @@ class MasterCampaignsController extends AppController
     }
 
     /**
+     * My campaigns method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function myCampaigns()
+    {
+        $user = $this->getUser();
+        $userId = null;
+        if ($user !== null) {
+            $userId = $user->id ?? null;
+            if ($userId === null && method_exists($user, 'getIdentifier')) {
+                $userId = $user->getIdentifier();
+            }
+        }
+
+        $masterCampaigns = [];
+        $playerCampaigns = [];
+
+        if ($userId !== null) {
+            $masterCampaigns = $this->MasterCampaigns->find()
+                ->contain(['Systems'])
+                ->where(['MasterCampaigns.master_user_id' => $userId])
+                ->order(['MasterCampaigns.created' => 'DESC'])
+                ->all();
+
+            $campaignPlayers = $this->getTableLocator()->get('CampaignPlayers');
+            $playerCampaigns = $campaignPlayers->find()
+                ->contain([
+                    'Campaigns' => function ($q) {
+                        return $q->contain(['Systems', 'MasterUsers']);
+                    },
+                ])
+                ->where(['CampaignPlayers.user_id' => $userId])
+                ->order(['CampaignPlayers.created' => 'DESC'])
+                ->all();
+        }
+
+        $this->set(compact('masterCampaigns', 'playerCampaigns'));
+    }
+
+    /**
      * Home method
      *
      * @return \Cake\Http\Response|null|void Renders view
@@ -62,6 +103,115 @@ class MasterCampaignsController extends AppController
     {
         $masterCampaign = $this->MasterCampaigns->get($id, contain: ['MasterUsers', 'Systems']);
         $this->set(compact('masterCampaign'));
+    }
+
+    /**
+     * Manage method
+     *
+     * @param string|null $id Master Campaign id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function manage($id = null)
+    {
+        $masterCampaign = $this->MasterCampaigns->get($id, contain: ['MasterUsers', 'Systems']);
+
+        $user = $this->getUser();
+        $userId = null;
+        if ($user !== null) {
+            $userId = $user->id ?? null;
+            if ($userId === null && method_exists($user, 'getIdentifier')) {
+                $userId = $user->getIdentifier();
+            }
+        }
+
+        if ($userId === null || (int)$masterCampaign->master_user_id !== (int)$userId) {
+            $this->Flash->error(__('Voce nao tem acesso para gerenciar esta campanha.'));
+            return $this->redirect(['action' => 'view', $masterCampaign->id]);
+        }
+
+        $campaignPlayersTable = $this->getTableLocator()->get('CampaignPlayers');
+        $campaignPlayers = $campaignPlayersTable->find()
+            ->contain(['Users'])
+            ->where(['CampaignPlayers.campaign_id' => $masterCampaign->id])
+            ->order(['CampaignPlayers.created' => 'DESC'])
+            ->all();
+
+        $pendingPlayers = [];
+        $activePlayers = [];
+        foreach ($campaignPlayers as $entry) {
+            $status = strtolower((string)$entry->status);
+            if ($status === 'pending') {
+                $pendingPlayers[] = $entry;
+                continue;
+            }
+            if (in_array($status, ['rejected', 'declined'], true)) {
+                continue;
+            }
+            $activePlayers[] = $entry;
+        }
+
+        $this->set(compact('masterCampaign', 'pendingPlayers', 'activePlayers'));
+        $this->set('hideTopNav', true);
+    }
+
+    /**
+     * Player manage method
+     *
+     * @param string|null $id Master Campaign id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function playerManage($id = null)
+    {
+        $masterCampaign = $this->MasterCampaigns->get($id, contain: ['MasterUsers', 'Systems']);
+
+        $user = $this->getUser();
+        $userId = null;
+        if ($user !== null) {
+            $userId = $user->id ?? null;
+            if ($userId === null && method_exists($user, 'getIdentifier')) {
+                $userId = $user->getIdentifier();
+            }
+        }
+
+        if ($userId === null) {
+            $this->Flash->error(__('Voce precisa estar logado para acessar esta campanha.'));
+            return $this->redirect(['action' => 'myCampaigns']);
+        }
+
+        $campaignPlayersTable = $this->getTableLocator()->get('CampaignPlayers');
+        $playerEntry = $campaignPlayersTable->find()
+            ->contain(['Users'])
+            ->where([
+                'CampaignPlayers.campaign_id' => $masterCampaign->id,
+                'CampaignPlayers.user_id' => $userId,
+            ])
+            ->first();
+
+        if (!$playerEntry) {
+            $this->Flash->error(__('Voce nao participa desta campanha.'));
+            return $this->redirect(['action' => 'myCampaigns']);
+        }
+
+        $campaignPlayers = $campaignPlayersTable->find()
+            ->contain(['Users'])
+            ->where(['CampaignPlayers.campaign_id' => $masterCampaign->id])
+            ->order(['CampaignPlayers.created' => 'ASC'])
+            ->all();
+
+        $activePlayers = [];
+        foreach ($campaignPlayers as $entry) {
+            $status = strtolower((string)$entry->status);
+            if (in_array($status, ['accepted', 'approved', 'active'], true)) {
+                $activePlayers[] = $entry;
+            }
+        }
+
+        $playerStatus = strtolower((string)($playerEntry->status ?? ''));
+
+        $this->set(compact('masterCampaign', 'playerEntry', 'activePlayers', 'playerStatus'));
+        $this->set('hideTopNav', true);
     }
 
     /**

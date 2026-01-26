@@ -54,7 +54,7 @@ echo $this->Html->scriptBlock(
                 <p>Campanhas p&uacute;blicas</p>
             </div>
         </a>
-        <a class="action-card reveal" style="--delay: 0.2s;" href="<?= $this->Url->build(['action' => 'index']) ?>">
+        <a class="action-card reveal" style="--delay: 0.2s;" href="<?= $this->Url->build(['action' => 'myCampaigns']) ?>">
             <span class="action-icon">
                 <i data-lucide="book-open" class="icon"></i>
             </span>
@@ -69,7 +69,7 @@ echo $this->Html->scriptBlock(
         <div class="dashboard-main">
             <div class="section-head reveal" style="--delay: 0.25s;">
                 <h2>Campanhas Ativas</h2>
-                <a class="section-link" href="<?= $this->Url->build(['action' => 'index']) ?>">
+                <a class="section-link" href="<?= $this->Url->build(['action' => 'myCampaigns']) ?>">
                     <span>Ver todas</span>
                     <i data-lucide="chevron-right" class="icon"></i>
                 </a>
@@ -127,10 +127,18 @@ echo $this->Html->scriptBlock(
                         <p>Use um c&oacute;digo de convite para entrar em uma campanha</p>
                     </div>
                 </div>
-                <form class="invite-form" action="#" method="post">
-                    <input class="invite-input" type="text" name="invite" placeholder="EX: K7-X92" aria-label="C&oacute;digo de convite">
+                <?= $this->Form->create(null, [
+                    'url' => ['controller' => 'CampaignPlayers', 'action' => 'invite'],
+                    'class' => 'invite-form',
+                ]) ?>
+                    <?= $this->Form->text('invite_code', [
+                        'class' => 'invite-input',
+                        'placeholder' => 'EX: K7-X92',
+                        'aria-label' => 'C&oacute;digo de convite',
+                        'required' => true,
+                    ]) ?>
                     <button class="btn btn--soft" type="submit">Entrar</button>
-                </form>
+                <?= $this->Form->end() ?>
             </div>
         </div>
 

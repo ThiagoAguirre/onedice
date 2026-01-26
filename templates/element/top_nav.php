@@ -78,7 +78,7 @@
             <h3 class="px-2 text-[10px] font-bold text-[#666666] uppercase tracking-widest mb-2">Campanhas</h3>
             <ul class="space-y-1">
                 <li>
-                    <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#666666] hover:bg-[#F5F5F5] hover:text-[#0F0F0F] transition-colors text-sm font-medium">
+                    <a href="<?= $this->Url->build(['controller' => 'MasterCampaigns', 'action' => 'myCampaigns']) ?>" class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#666666] hover:bg-[#F5F5F5] hover:text-[#0F0F0F] transition-colors text-sm font-medium">
                         <i data-lucide="book" class="w-4 h-4"></i>
                         Minhas Campanhas
                     </a>
@@ -139,10 +139,10 @@
             </div>
             <i data-lucide="chevron-right" class="w-4 h-4 text-[#CCCCCC]"></i>
         </a>
-        <button class="w-full flex items-center justify-center gap-2 text-xs font-bold text-[#B11226] py-2 hover:bg-[#FFF0F2] rounded transition-colors">
+        <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'logout']) ?>" class="w-full flex items-center justify-center gap-2 text-xs font-bold text-[#B11226] py-2 hover:bg-[#FFF0F2] rounded transition-colors">
             <i data-lucide="log-out" class="w-3 h-3"></i>
             Sair
-        </button>
+        </a>
     </div>
 </aside>
 

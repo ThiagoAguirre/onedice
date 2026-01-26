@@ -405,6 +405,105 @@ a {
     width: 100%;
 }
 
+.section-block {
+    margin: 26px 0 34px;
+}
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.section-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fde8eb;
+    color: var(--red);
+    box-shadow: 0 12px 24px rgba(177, 18, 38, 0.18);
+}
+
+.section-icon--player {
+    background: #e3f1ff;
+    color: #145b8c;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f0f0f;
+}
+
+.section-title p {
+    margin: 4px 0 0;
+    color: #7a7a7a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.section-divider {
+    border-top: 1px solid var(--gray-300);
+    margin: 26px 0;
+}
+
+.chip.role {
+    left: 12px;
+    top: 12px;
+    border: 1px solid transparent;
+}
+
+.chip.role-master {
+    background: #ffe9c7;
+    color: #8c5416;
+}
+
+.chip.role-player {
+    background: #e1f0ff;
+    color: #135e8c;
+}
+
+.card-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #6b6b6b;
+    font-weight: 600;
+}
+
+.card-subtitle i {
+    color: var(--red);
+}
+
+.card-subtitle--status {
+    margin-top: 2px;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
 .empty-state {
     grid-column: 1 / -1;
     text-align: center;
