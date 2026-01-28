@@ -44,6 +44,15 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('CampaignPlayers', [
+            'foreignKey' => 'user_id',
+        ]);
+        $this->belongsToMany('Countries', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'country_id',
+            'joinTable' => 'users_countries',
+        ]);
     }
 
     /**
@@ -59,6 +68,35 @@ class UsersTable extends Table
             ->maxLength('username', 50)
             ->requirePresence('username', 'create')
             ->notEmptyString('username');
+
+        $validator
+            ->scalar('display_name')
+            ->maxLength('display_name', 100)
+            ->allowEmptyString('display_name');
+
+        $validator
+            ->scalar('bio')
+            ->allowEmptyString('bio');
+
+        $validator
+            ->scalar('age_range')
+            ->maxLength('age_range', 20)
+            ->allowEmptyString('age_range');
+
+        $validator
+            ->scalar('experience_level')
+            ->maxLength('experience_level', 20)
+            ->allowEmptyString('experience_level');
+
+        $validator
+            ->scalar('role_preference')
+            ->maxLength('role_preference', 20)
+            ->allowEmptyString('role_preference');
+
+        $validator
+            ->scalar('play_style')
+            ->maxLength('play_style', 20)
+            ->allowEmptyString('play_style');
 
         $validator
             ->scalar('password')

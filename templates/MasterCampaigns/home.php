@@ -36,7 +36,7 @@ echo $this->Html->scriptBlock(
                 <p>Crie um novo mundo</p>
             </div>
         </a>
-        <a class="action-card reveal" style="--delay: 0.1s;" href="#">
+        <a class="action-card reveal" style="--delay: 0.1s;" href=" <?= $this->Url->build(['action' => 'index']) ?>">
             <span class="action-icon">
                 <i data-lucide="search" class="icon"></i>
             </span>
@@ -45,12 +45,12 @@ echo $this->Html->scriptBlock(
                 <p>Encontre campanhas</p>
             </div>
         </a>
-        <a class="action-card reveal" style="--delay: 0.15s;" href="#">
+        <a class="action-card reveal" style="--delay: 0.15s;" href="<?= $this->Url->build(['action' => 'explore']) ?>">
             <span class="action-icon">
                 <i data-lucide="compass" class="icon"></i>
             </span>
             <div>
-                <h3>Explorar</h3>
+                <h3>Em manutençãooo</h3>
                 <p>Campanhas p&uacute;blicas</p>
             </div>
         </a>

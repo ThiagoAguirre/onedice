@@ -11,6 +11,12 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $username
+ * @property string|null $display_name
+ * @property string|null $bio
+ * @property string|null $age_range
+ * @property string|null $experience_level
+ * @property string|null $role_preference
+ * @property string|null $play_style
  * @property string $password
  * @property string $email
  * @property \Cake\I18n\DateTime|null $created
@@ -43,6 +49,12 @@ class User extends Entity
      */
     protected array $_accessible = [
         'username' => true,
+        'display_name' => true,
+        'bio' => true,
+        'age_range' => true,
+        'experience_level' => true,
+        'role_preference' => true,
+        'play_style' => true,
         'password' => true,
         'password_confirm' => true,
         'email' => true,
